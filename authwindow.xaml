@@ -1,0 +1,93 @@
+<Window x:Class="PokeMMO_.AuthWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        MouseDown="Window_MouseDown" x:Name="MyAuthWindow" Title="PokeMMO+ | Login" Height="350"
+        Width="250" WindowStyle="None" AllowsTransparency="true" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Left="0" Top="0" Topmost="true" Background="#191919">
+  <Grid>
+    <Label x:Name="lbl_title" Content="PokeMMO+ | Login" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    <Label MouseLeftButtonDown="lbl_x_Click" x:Name="lbl_x" Content="X" HorizontalAlignment="Right"
+           VerticalAlignment="Top"/>
+    <PackIconMaterial FrameworkElement.Margin="0px,40px,0px,0px" Control.Foreground="White"
+                      FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="50"
+                      FrameworkElement.Height="50" Kind="Pokeball"/>
+    <StackPanel x:Name="stackpanel_txt_login" VerticalAlignment="Center" Margin="0,110,0,140" Visibility="Visible">
+      <WatermarkTextBox KeyDown="OnKeyDown" x:Name="txt_login_username" Control.Foreground="White" Watermark="Username"
+                        FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                        FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <WatermarkPasswordBox KeyDown="OnKeyDown" x:Name="txt_login_password" Control.Foreground="White" Watermark="Password"
+                            FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                            FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <CheckBox x:Name="chk_auto_login" Content="Auto Login" HorizontalAlignment="Left" Margin="50px,0px,0px,8px"
+                IsChecked="{Binding AutoLogin}"/>
+    </StackPanel>
+    <StackPanel x:Name="stackpanel_btn_login" VerticalAlignment="Bottom" Margin="0px,0px,0px,15px"
+                Visibility="Visible">
+      <Button x:Name="btn_login_login" Margin="0px,0px,0px,8px" Content="Premium Login" Height="23"
+              HorizontalAlignment="Center" Width="180" Foreground="#7de6fa"
+              ToolTip="Access full features, login to premium account!"/>
+      <Button x:Name="btn_login_register" Margin="0px,0px,0px,8px" Content="Premium Register" Height="23"
+              HorizontalAlignment="Center" Width="180" Foreground="#7de6fa"
+              ToolTip="Activate premium account with purchased license."/>
+      <Button x:Name="btn_login_extend" Margin="0px,0px,0px,8px" Content="Extend Subscription" Height="23"
+              HorizontalAlignment="Center" Width="180" Foreground="#7de6fa"
+              ToolTip="Renew premium account with new license."/>
+      <Button x:Name="btn_login_free" Content="Free Access" Height="23" HorizontalAlignment="Center" Width="180"
+              Foreground="#FFFFD83B" ToolTip="Access the bot with limited free features."/>
+    </StackPanel>
+    <StackPanel x:Name="stackpanel_txt_register" VerticalAlignment="Center" Visibility="Hidden">
+      <WatermarkTextBox x:Name="txt_register_username" Control.Foreground="White" Watermark="Username"
+                        FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                        FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <WatermarkPasswordBox x:Name="txt_register_password" Control.Foreground="White" Watermark="Password"
+                            FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                            FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <WatermarkPasswordBox x:Name="txt_register_password2" Control.Foreground="White" Watermark="Password"
+                            FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                            FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <WatermarkTextBox x:Name="txt_register_email" Control.Foreground="White" Watermark="E-Mail"
+                        FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                        FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <StackPanel Margin="30,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WatermarkTextBox x:Name="txt_register_license" Control.Foreground="White" Watermark="Premium License"
+                          FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                          FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+        <Button Click="btn_shop_Click" x:Name="btn_shop1" Margin="5,-9,0,0" Content="🛒" Height="26" Width="26"
+                Foreground="#7de6fa" ToolTip="Shop"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel x:Name="stackpanel_btn_register" VerticalAlignment="Bottom" Margin="0px,0px,0px,40px"
+                Visibility="Hidden">
+      <Button x:Name="btn_register_register" Margin="0px,0px,0px,8px" Content="Register" Height="23"
+              HorizontalAlignment="Center" Width="180"/>
+      <Button x:Name="btn_register_backtologin" Content="Back to Login" Height="23" HorizontalAlignment="Center"
+              Width="180"/>
+    </StackPanel>
+    <StackPanel x:Name="stackpanel_txt_extend" VerticalAlignment="Center" Visibility="Hidden">
+      <WatermarkTextBox x:Name="txt_extend_username" Control.Foreground="White" Watermark="Username"
+                        FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                        FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <WatermarkPasswordBox x:Name="txt_extend_password" Control.Foreground="White" Watermark="Password"
+                            FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                            FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+      <StackPanel Margin="30,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WatermarkTextBox x:Name="txt_extend_license" Control.Foreground="White" Watermark="Premium License"
+                          FrameworkElement.Margin="0px,0px,0px,8px" FrameworkElement.Height="23"
+                          FrameworkElement.HorizontalAlignment="Center" FrameworkElement.Width="150"/>
+        <Button Click="btn_shop_Click" x:Name="btn_shop2" Margin="5,-9,0,0" Content="🛒" Height="26" Width="26"
+                Foreground="#7de6fa" ToolTip="Shop"/>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel x:Name="stackpanel_btn_extend" VerticalAlignment="Bottom" Margin="0px,0px,0px,40px"
+                Visibility="Hidden">
+      <Button x:Name="btn_extend_extend" Margin="0px,0px,0px,8px" Content="Extend Subscription" Height="23"
+              HorizontalAlignment="Center" Width="180"/>
+      <Button x:Name="btn_extend_backtologin" Content="Back to Login" Height="23" HorizontalAlignment="Center"
+              Width="180"/>
+    </StackPanel>
+  </Grid>
+</Window>

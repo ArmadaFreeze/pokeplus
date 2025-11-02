@@ -1,0 +1,105 @@
+<UserControl x:Class="PokeMMO_.Views.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PokeMMO_.Views"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:model="clr-namespace:PokeMMO_.Model"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+  <Grid>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*"/>
+        <ColumnDefinition Width="1.4*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+      </Grid.RowDefinitions>
+      <TextBlock x:Name="SupportedResolutionsLabel" Margin="10,17,0,0" Grid.Row="0" Text="Supported Resolutions"
+                 Foreground="White"
+                 ToolTip="This resolution and the Game resolution and your computer (Windows) resolution has to be the same."/>
+      <RadioButton x:Name="chk_fullhd" Margin="10,5,0,0" Grid.Row="1" Content="1920x1080"
+                   IsChecked="{Binding ResolutionMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ResolutionMode.HD}}"/>
+      <RadioButton x:Name="chk_sd" Margin="10,5,0,0" Grid.Row="2" Content="1280x720"
+                   IsChecked="{Binding ResolutionMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ResolutionMode.SD}}"/>
+      <TextBlock Margin="10,17,0,0" Grid.Row="0" Grid.Column="1" Text="Primary Mouse Button" Foreground="White"
+                 ToolTip="Support for left handed users.
+Instead of using left mouse clicks you can switch over to use right mouse clicks."/>
+      <ToggleSwitch FrameworkElement.Margin="10,5,0,0" Grid.Row="1" Grid.Column="1" OffContent="Left Click"
+                    OnContent="Right Click" IsOn="{Binding PrimaryMouseButton}"/>
+      <CheckBox Margin="10,5,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="Humanize Mouse"
+                ToolTip="Will do random human mouse behaviours." IsChecked="{Binding HumanizeMouseMovement}"/>
+      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+      <TextBlock Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Center" Text="Load/Save Settings"
+                 Foreground="White"
+                 ToolTip="Load or save the settings of your bot.
+The settings are saved in the same folder in the 'settings.ini' file.
+Your saved settings will be launched on startup of the bot."/>
+      <StackPanel Margin="10,10,0,0" Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <Button ToolTip="Load Settings" Background="Transparent" BorderThickness="0"
+                Command="{Binding LoadCommand}">
+          <ContentControl.Content>
+            <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25"
+                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="Upload"/>
+          </ContentControl.Content>
+        </Button>
+        <Button ToolTip="Save Settings" Margin="10,0,0,0" Background="Transparent" BorderThickness="0"
+                Command="{Binding SaveCommand}">
+          <ContentControl.Content>
+            <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25"
+                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="ContentSave"/>
+          </ContentControl.Content>
+        </Button>
+      </StackPanel>
+      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="6" Grid.ColumnSpan="2"/>
+      <TextBlock Margin="10,10,0,0" Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                 Text="Choose PokeMMO Directory &amp; Replace Properties &amp; GFX File" Foreground="White"
+                 ToolTip="Automatically replaces the Properties &amp; GFX File.
+To make the bot work properly in battles you need to replace the Properties &amp; GFX File in PokeMMO with the one in the bot folder.
+To do that, select the default path of your PokeMMO Folder by clicking the left button.
+Replace the files automatically by clicking the right button."/>
+      <StackPanel Margin="10,10,0,0" Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal"
+                  VerticalAlignment="Bottom">
+        <Button ToolTip="Choose PokeMMO Default Directory" Background="Transparent" BorderThickness="0"
+                Command="{Binding DefaultPathCommand}">
+          <ContentControl.Content>
+            <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25"
+                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="File"/>
+          </ContentControl.Content>
+        </Button>
+        <TextBox Margin="10,0,10,0" VerticalAlignment="Center" Width="200" Watermark="Default Directory"
+                 Text="{Binding DefaultPath}"/>
+        <Button ToolTip="Replace Properties &amp; GFX File" Background="Transparent" BorderThickness="0"
+                Command="{Binding ReplaceGFXCommand}">
+          <ContentControl.Content>
+            <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25"
+                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="FileReplace"/>
+          </ContentControl.Content>
+        </Button>
+      </StackPanel>
+      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="9" Grid.ColumnSpan="2"/>
+      <StackPanel Margin="10,12,0,0" Grid.Row="10" Grid.ColumnSpan="2" Orientation="Horizontal"
+                  VerticalAlignment="Bottom">
+        <Button Width="130" Height="31" Content="SPOOF" IsEnabled="{Binding PremiumEnabled}"
+                Command="{Binding SpoofCommand}"/>
+        <Button Margin="10,0,0,0" Height="31" Width="130" Content="RESET" IsEnabled="{Binding PremiumEnabled}"
+                Command="{Binding ResetCommand}"/>
+      </StackPanel>
+    </Grid>
+    <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25" FrameworkElement.Margin="10"
+                      FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top"
+                      Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="Cog"/>
+  </Grid>
+</UserControl>

@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\admin\Desktop\koi2-cleaned-cleaned_unpacked.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9584D658-1BB5-4B6C-B1D5-7D17183B488D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>PokeMMO+</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Core, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Discord.Net.Core.3.18.0\lib\net461\Discord.Net.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Rest, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Discord.Net.Rest.3.18.0\lib\net461\Discord.Net.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Webhook, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Discord.Net.Webhook.3.18.0\lib\netstandard2.0\Discord.Net.Webhook.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.WebSocket, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Discord.Net.WebSocket.3.18.0\lib\net461\Discord.Net.WebSocket.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.70.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.70.0\lib\net462\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.70.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.70.0\lib\net462\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.70.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Core.1.70.0\lib\net462\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.YouTube.v3, Version=1.70.0.3847, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.YouTube.v3.1.70.0.3847\lib\net462\Google.Apis.YouTube.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>packages\MahApps.Metro.2.4.11\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHotkey, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
+      <HintPath>packages\NHotkey.3.0.0\lib\net462\NHotkey.dll</HintPath>
+    </Reference>
+    <Reference Include="NHotkey.Wpf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
+      <HintPath>packages\NHotkey.Wpf.3.0.0\lib\net462\NHotkey.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RestSharp, Version=112.1.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.112.1.0\lib\net48\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Interactive.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Interactive.Async.6.0.1\lib\net48\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Linq.Async.6.0.1\lib\net48\System.Linq.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="XamlGeneratedNamespace\GeneratedInternalTypeHelper.cs" />
+    <Compile Include="KeyAuth\api.cs" />
+    <Compile Include="KeyAuth\Logger.cs" />
+    <Compile Include="KeyAuth\encryption.cs" />
+    <Compile Include="KeyAuth\json_wrapper.cs" />
+    <Compile Include="PokeMMO_\AuthWindow.cs" />
+    <Compile Include="PokeMMO_\Class2.cs" />
+    <Compile Include="PokeMMO_\SubWindow.cs" />
+    <Compile Include="PokeMMO_\ChosenPokeBallWindow.cs" />
+    <Compile Include="PokeMMO_\DiscordWindow.cs" />
+    <Compile Include="PokeMMO_\App.cs" />
+    <Compile Include="PokeMMO_\MainWindow.cs" />
+    <Compile Include="PokeMMO_\Properties\Resources.cs" />
+    <Compile Include="PokeMMO_\Properties\Settings.cs" />
+    <Compile Include="PokeMMO_\Mvvm\BindableBase.cs" />
+    <Compile Include="PokeMMO_\Mvvm\DelegateCommand.cs" />
+    <Compile Include="PokeMMO_\Views\AuthPage.cs" />
+    <Compile Include="PokeMMO_\Views\HomePage.cs" />
+    <Compile Include="PokeMMO_\Views\PremiumPage.cs" />
+    <Compile Include="PokeMMO_\Views\SecurityPage.cs" />
+    <Compile Include="PokeMMO_\Views\SettingsPage.cs" />
+    <Compile Include="PokeMMO_\ViewModels\ChosenPokeBallViewModel.cs" />
+    <Compile Include="PokeMMO_\ViewModels\DiscordViewModel.cs" />
+    <Compile Include="PokeMMO_\ViewModels\MainViewModel.cs" />
+    <Compile Include="PokeMMO_\ViewModels\AuthViewModel.cs" />
+    <Compile Include="PokeMMO_\ViewModels\SubViewModel.cs" />
+    <Compile Include="PokeMMO_\Model\Pokemon.cs" />
+    <Compile Include="PokeMMO_\Model\CatchMovesRoutine.cs" />
+    <Compile Include="PokeMMO_\Model\ChosenPokeBall.cs" />
+    <Compile Include="PokeMMO_\Model\Auth.cs" />
+    <Compile Include="PokeMMO_\Model\BotMode.cs" />
+    <Compile Include="PokeMMO_\Model\ItemCatchSpells.cs" />
+    <Compile Include="PokeMMO_\Model\Home.cs" />
+    <Compile Include="PokeMMO_\Model\Premium.cs" />
+    <Compile Include="PokeMMO_\Model\ResolutionMode.cs" />
+    <Compile Include="PokeMMO_\Model\Security.cs" />
+    <Compile Include="PokeMMO_\Model\Settings.cs" />
+    <Compile Include="PokeMMO_\Converter\EnumBindingSourceExtension.cs" />
+    <Compile Include="PokeMMO_\Converter\EnumToBoolConverter.cs" />
+    <Compile Include="PokeMMO_\Proccessing\Handle.cs" />
+    <Compile Include="PokeMMO_\Botting\Actions.cs" />
+    <Compile Include="PokeMMO_\Botting\Battle.cs" />
+    <Compile Include="PokeMMO_\Botting\Behavior.cs" />
+    <Compile Include="PokeMMO_\Botting\Bot.cs" />
+    <Compile Include="PokeMMO_\Botting\BotSettings.cs" />
+    <Compile Include="PokeMMO_\Botting\Check.cs" />
+    <Compile Include="PokeMMO_\Botting\Routes.cs" />
+    <Compile Include="PokeMMO_\Botting\State.cs" />
+    <Compile Include="PokeMMO_\Botting\Status.cs" />
+    <Compile Include="PokeMMO_\Botting\Tolerance.cs" />
+    <Compile Include="PokeMMO_\Input\AgentClient.cs" />
+    <Compile Include="PokeMMO_\Input\InputKeyboard.cs" />
+    <Compile Include="PokeMMO_\Input\InputMouse.cs" />
+    <Compile Include="PokeMMO_\Classes\PokeMMOLogger.cs" />
+    <Compile Include="PokeMMO_\Classes\CEDetection.cs" />
+    <Compile Include="PokeMMO_\Classes\ScreenCapture.cs" />
+    <Compile Include="PokeMMO_\Classes\MAC_Spoofer.cs" />
+    <Compile Include="PokeMMO_\Classes\InstalledApplications.cs" />
+    <Compile Include="PokeMMO_\Classes\Properties.cs" />
+    <Compile Include="PokeMMO_\Classes\PathAndFileManager.cs" />
+    <Compile Include="PokeMMO_\Classes\IniFile.cs" />
+    <Compile Include="PokeMMO_\Classes\Configuration.cs" />
+    <Compile Include="PokeMMO_\Classes\DiscordBot.cs" />
+    <Compile Include="PokeMMO_\Classes\Includes.cs" />
+    <Compile Include="PokeMMO_\Classes\RandomNumber.cs" />
+    <Compile Include="PokeMMO_\Classes\Search.cs" />
+    <Compile Include="PokeMMO_\Classes\Sounds.cs" />
+    <Compile Include="PokeMMO_\Classes\Unlocker.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="caught.png" />
+    <Resource Include="pokemmo+.ico" />
+    <Resource Include="uncaught.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PokeMMO_\Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="app.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="authwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="subwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\authpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\chosenpokeballwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\discordwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\homepage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\premiumpage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\securitypage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="views\settingspage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
