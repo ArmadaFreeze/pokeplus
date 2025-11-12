@@ -33,3 +33,31 @@ This repository contains a **decompiled version of a bot for PokeMMO+**, a popul
 - PokePlus Official Site: [https://www.pokeplus.live/](https://www.pokeplus.live/)  
 - PokePlus Forums: [https://forum.pokeplus.live/index.php](https://forum.pokeplus.live/index.php)  
 
+
+
+
+
+# PokePlus+ Décompilé pour PokeMMO
+
+Bot automatisé pour le jeu **PokeMMO**, issu de la décompilation du logiciel disponible sur [https://pokeplus.live/](https://pokeplus.live/).
+
+## Description
+
+Ce projet fournit le code décompilé d’un **bot automatisé** dédié exclusivement à **PokeMMO**. Il permet d’automatiser farming, leveling, captures, et autres actions répétitives dans PokeMMO.
+
+## Fonctionnalités
+
+- Automatisation complète des activités dans PokeMMO
+- Profils de configuration personnalisables
+- Mode gratuit et mode premium avec fonctionnalités étendues
+- Notifications Discord intégrées pour suivi à distance
+- Support multi-compte, virtualisation (VMware)
+- Détection automatique de Pokémon shiny avec alertes
+- Sécurité anti-détection, journaux détaillés, protections automatisées
+- Contrôle clavier/souris, gestion résolution adaptative
+
+## Mots-clés
+
+pokemmo, bot, automation, macro, pokemon, decompiler, reverse engineering, pokeplus, pokemmo bot, shiny hunting, farm, xp bot, level bot, pokemon bot, automation, virtual machine, vmware, multi-account, discord notifications, premium, license, cheat, hack, free access, premium features, anti-detection, game automation, script, visual bot, register, unlock, safe, secure, keyboard, mouse control, game automation, open source, forum, guide, how-to
+
+
