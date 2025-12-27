@@ -31,7 +31,19 @@ This repository contains a **decompiled version of a bot for PokeMMO+**, a popul
 ## Additional Resources
 
 - PokePlus Official Site: [https://www.pokeplus.live/](https://www.pokeplus.live/)  
-- PokePlus Forums: [https://forum.pokeplus.live/index.php](https://forum.pokeplus.live/index.php)  
+- PokePlus Forums: [https://forum.pokeplus.live/index.php](https://forum.pokeplus.live/index.php)
+
+Why is the start button grey and not working?
+Because you have to unlock the bot first. As a free user just press “unlock” in the top right corner of the bot and then press "free access". As a premium user you can skip this process by pressing "unlock" and just login into your premium account.
+
+Why my bot keeps switching between attacks and do nothing?
+You didn’t follow every [HOW-TO] Install PokeMMO+ Step (very important). Make sure the Game Resolution matches your Windows Desktop Resolution & Bot Resolution on the Settings Page of the bot.
+
+Why PokeMMO shows 1920x1060 instead of 1920x1080?
+It’s a visual bug, you should be fine by ignoring it.
+
+Where can I reset my HWID?
+[HOW-TO] HWID Reset PokeMMO+
 
 
 
