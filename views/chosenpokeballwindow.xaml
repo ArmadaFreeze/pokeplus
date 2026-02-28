@@ -1,50 +1,34 @@
-<Window x:Class="PokeMMO_.ChosenPokeBallWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:model="clr-namespace:PokeMMO_.Model"
-        xmlns:vm="clr-namespace:PokeMMO_.ViewModels"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        MouseDown="Window_MouseDown" x:Name="MyChosenPokeBallWindow" Title="" Height="190" Width="120"
-        Background="Transparent" WindowStyle="None" AllowsTransparency="true" ResizeMode="NoResize"
-        WindowStartupLocation="Manual" Topmost="true">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="PokeMMO_.ChosenPokeBallWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="clr-namespace:PokeMMO_.Model" xmlns:vm="clr-namespace:PokeMMO_.ViewModels" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Name="MyChosenPokeBallWindow" Title="" Height="190" Width="120" Background="#00FFFFFF" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="Manual" Topmost="True" xmlns:pokemmo_="clr-namespace:PokeMMO_" MouseDown="Window_MouseDown">
   <Grid>
-    <Border BorderThickness="1" CornerRadius="8" Background="#FF252525"/>
-    <Label Content="Choose Poké Ball" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,0,0,0"/>
-    <Label MouseLeftButtonDown="lbl_x_Click" x:Name="lbl_x" Content="X" HorizontalAlignment="Right"
-           VerticalAlignment="Top" Margin="0,0,7,0"/>
+    <Border BorderThickness="1" CornerRadius="8" Background="#FF252525" />
+    <Label Content="Choose Poké Ball" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,0,0,0" />
+    <Label Name="lbl_x" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,7,0" MouseLeftButtonDown="lbl_x_Click" />
     <Grid Margin="0px,24px,0px,0px">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="auto" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
       </Grid.RowDefinitions>
-      <TextBlock Margin="8,8,0,0" Grid.Row="0" Grid.Column="0" Foreground="White" Text="Poké Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="0" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.PokeBall}}"/>
-      <TextBlock Margin="8,8,0,0" Grid.Row="1" Grid.Column="0" Foreground="White" Text="Great Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="1" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.GreatBall}}"/>
-      <TextBlock Margin="8,8,0,0" Grid.Row="2" Grid.Column="0" Foreground="White" Text="Ultra Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="2" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.UltraBall}}"/>
-      <TextBlock Margin="8,8,0,0" Grid.Row="3" Grid.Column="0" Foreground="White" Text="Repeat Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="3" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.RepeatBall}}"/>
-      <TextBlock Margin="8,8,0,0" Grid.Row="4" Grid.Column="0" Foreground="White" Text="Dusk Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="4" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.DuskBall}}"/>
-      <TextBlock Margin="8,8,0,0" Grid.Row="5" Grid.Column="0" Foreground="White" Text="Dive Ball"/>
-      <RadioButton Margin="8,8,0,0" Grid.Row="5" Grid.Column="1"
-                   IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.DiveBall}}"/>
+      <TextBlock Margin="8,8,0,0" Grid.Row="0" Grid.Column="0" Foreground="#FFFFFFFF" Text="Poké Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="0" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.PokeBall}}" />
+      <TextBlock Margin="8,8,0,0" Grid.Row="1" Grid.Column="0" Foreground="#FFFFFFFF" Text="Great Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.GreatBall}}" />
+      <TextBlock Margin="8,8,0,0" Grid.Row="2" Grid.Column="0" Foreground="#FFFFFFFF" Text="Ultra Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="2" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.UltraBall}}" />
+      <TextBlock Margin="8,8,0,0" Grid.Row="3" Grid.Column="0" Foreground="#FFFFFFFF" Text="Repeat Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="3" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.RepeatBall}}" />
+      <TextBlock Margin="8,8,0,0" Grid.Row="4" Grid.Column="0" Foreground="#FFFFFFFF" Text="Dusk Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="4" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.DuskBall}}" />
+      <TextBlock Margin="8,8,0,0" Grid.Row="5" Grid.Column="0" Foreground="#FFFFFFFF" Text="Dive Ball" />
+      <RadioButton Margin="8,8,0,0" Grid.Row="5" Grid.Column="1" IsChecked="{Binding ChosenPokeBall, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:ChosenPokeBall.DiveBall}}" />
     </Grid>
   </Grid>
 </Window>

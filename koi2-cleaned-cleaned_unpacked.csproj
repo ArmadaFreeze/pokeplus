@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>PokeMMO+</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>net472</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="resources\pokemmo-.ico" />
+    <None Remove="resources\caught.png" />
+    <None Remove="resources\uncaught.png" />
+    <EmbeddedResource Include="resources\pokemmo-.ico" />
+    <EmbeddedResource Include="resources\caught.png" />
+    <EmbeddedResource Include="resources\uncaught.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="2Captcha" Version="2.2.0" />
+    <PackageReference Include="Captcha" Version="4.4.2" />
+    <PackageReference Include="Discord.Net.Core" Version="3.18.0" />
+    <PackageReference Include="Discord.Net.Rest" Version="3.18.0" />
+    <PackageReference Include="Discord.Net.WebSocket" Version="3.18.0" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="5.0.0" />
+    <PackageReference Include="Google.Apis" Version="1.73.0" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.73.0.4053" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="NHotkey" Version="4.0.0" />
+    <PackageReference Include="NHotkey.Wpf" Version="4.0.0" />
+    <PackageReference Include="RestSharp" Version="113.1.0" />
+    <PackageReference Include="WindowsInput" Version="6.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="Xceed.Wpf.Toolkit" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="MahApps.Metro" />
+    <Reference Include="NHotkey" />
+    <Reference Include="WindowsInput" />
+    <Reference Include="System.Management" />
+    <Reference Include="Discord.Net.Core" />
+    <Reference Include="Discord.Net.WebSocket" />
+    <Reference Include="RestSharp" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="Google.Apis.YouTube.v3" />
+    <Reference Include="System.Core" />
+    <Reference Include="NHotkey.Wpf">
+      <HintPath>..\..\Downloads\PokeMMO+_Loader\NHotkey.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Discord.Net.Rest" />
+    <Reference Include="Google.Apis" />
+    <Reference Include="Google.Apis.Core" />
+  </ItemGroup>
+</Project>

@@ -1,35 +1,46 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PokeMMO_.App
-// Assembly: PokeMMO+, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DFFE97-DBAD-4EA1-90EA-586E112BF54C
-// Assembly location: C:\Users\admin\Desktop\koi2-cleaned-cleaned_unpacked.exe
-
 using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Threading;
+using PokeMMO_.Classes;
 
-namespace PokeMMO_
+namespace PokeMMO_;
+
+public class App : Application
 {
-    public partial class App : Application
-    {
-      private bool _contentLoaded;
+	private bool _contentLoaded;
 
-      [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-      [DebuggerNonUserCode]
-      public void InitializeComponent()
-      {
-        this.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
-        Application.LoadComponent((object) this, new Uri("/PokeMMO+;component/app.xaml", UriKind.Relative));
-      }
+	protected override void OnStartup(StartupEventArgs e)
+	{
+		base.OnStartup(e);
+		base.DispatcherUnhandledException += delegate(object sender, DispatcherUnhandledExceptionEventArgs e)
+		{
+			PokeMMOLogger.Instance.Log($"Unhandled UI exception: {e.Exception}");
+			e.Handled = true;
+		};
+	}
 
-      [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-      [DebuggerNonUserCode]
-      [STAThread]
-      public static void Main()
-      {
-        App app = new App();
-        app.Run();
-      }
-    }
+	[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
+	[DebuggerNonUserCode]
+	public void InitializeComponent()
+	{
+		if (!_contentLoaded)
+		{
+			_contentLoaded = true;
+			base.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
+			Uri resourceLocator = new Uri("/PokeMMO+;component/app.xaml", UriKind.Relative);
+			Application.LoadComponent(this, resourceLocator);
+		}
+	}
+
+	[STAThread]
+	[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
+	[DebuggerNonUserCode]
+	public static void Main()
+	{
+		App app = new App();
+		app.InitializeComponent();
+		app.Run();
+	}
 }
