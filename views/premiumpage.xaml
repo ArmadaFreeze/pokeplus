@@ -1,106 +1,63 @@
-<UserControl x:Class="PokeMMO_.Views.PremiumPage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:PokeMMO_.Views"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:model="clr-namespace:PokeMMO_.Model"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="PokeMMO_.Views.PremiumPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:PokeMMO_.Views" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="clr-namespace:PokeMMO_.Model" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
   <Grid>
     <Grid>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
       </Grid.RowDefinitions>
-      <CheckBox Margin="10,17,0,0" Grid.Row="0" Grid.Column="0" Content="Potion System" Foreground="White"
-                ToolTip="Automatically uses Potions in encounters.
-Potion needs to be placed on Hotkey Slot 5 in the Action Bar. 
-Super Potion needs to be placed on Hotkey Slot 6 in the Action Bar. 
-Hyper Potion needs to be placed on Hotkey Slot 7 in the Action Bar."
-                IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding PotionSystem}"/>
-      <ComboBox Margin="10,10,10,0" Grid.Row="1" Grid.Column="0" Watermark="When Orange HP use"
-                Foreground="#edb801" SelectedIndex="{Binding OrangePotionSelectedIndex}">
-        <ComboBoxItem Content="Potion" Foreground="#edb801"/>
-        <ComboBoxItem Content="Super Potion" Foreground="#edb801"/>
-        <ComboBoxItem Content="Hyper Potion" Foreground="#edb801"/>
-        <ComboBoxItem Content="None" Foreground="#edb801"/>
+      <CheckBox Margin="10,17,0,0" Grid.Row="0" Grid.Column="0" Content="Potion System" Foreground="#FFFFFFFF" ToolTip="Automatically uses Potions in encounters.&#xD;&#xA;Potions are used directly from the Bag.&#xD;&#xA;No Hotkey Slot needed." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding PotionSystem}" />
+      <ComboBox Margin="10,10,10,0" Grid.Row="1" Grid.Column="0" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:TextBoxHelper.Watermark="When Orange HP use" Foreground="#edb801" SelectedIndex="{Binding OrangePotionSelectedIndex}">
+        <ComboBoxItem Content="Potion" Foreground="#edb801" />
+        <ComboBoxItem Content="Super Potion" Foreground="#edb801" />
+        <ComboBoxItem Content="Hyper Potion" Foreground="#edb801" />
+        <ComboBoxItem Content="None" Foreground="#edb801" />
       </ComboBox>
-      <ComboBox Margin="10,10,10,0" Grid.Row="1" Grid.Column="1" Watermark="When Red HP use" Foreground="#ee9898"
-                SelectedIndex="{Binding RedPotionSelectedIndex}">
-        <ComboBoxItem Content="Potion" Foreground="#ee9898"/>
-        <ComboBoxItem Content="Super Potion" Foreground="#ee9898"/>
-        <ComboBoxItem Content="Hyper Potion" Foreground="#ee9898"/>
-        <ComboBoxItem Content="None" Foreground="#ee9898"/>
+      <ComboBox Margin="10,10,10,0" Grid.Row="1" Grid.Column="1" p12:TextBoxHelper.Watermark="When Red HP use" Foreground="#ee9898" SelectedIndex="{Binding RedPotionSelectedIndex}" xmlns:p12="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+        <ComboBoxItem Content="Potion" Foreground="#ee9898" />
+        <ComboBoxItem Content="Super Potion" Foreground="#ee9898" />
+        <ComboBoxItem Content="Hyper Potion" Foreground="#ee9898" />
+        <ComboBoxItem Content="None" Foreground="#ee9898" />
       </ComboBox>
-      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="2" Grid.ColumnSpan="2"/>
-      <TextBlock Margin="10,10,0,0" Text="Catch Moves Routine" Grid.Row="3" Grid.Column="0" Foreground="White"/>
+      <GridSplitter IsEnabled="False" Margin="10,10,10,0" Height="2" Grid.Row="2" Grid.ColumnSpan="2" />
+      <TextBlock Margin="10,10,0,0" Text="Catch Moves Routine" Grid.Row="3" Grid.Column="0" Foreground="#FFFFFFFF" />
       <StackPanel Margin="10,10,0,0" Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-        <RadioButton HorizontalAlignment="Left" Width="auto" Content="SFS"
-                     ToolTip="Substitute -&gt; False Swipe -&gt; Spore" Foreground="White"
-                     IsEnabled="{Binding PremiumEnabled}"
-                     IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.SFS}}"/>
-        <RadioButton Margin="45,0,0,0" HorizontalAlignment="Left" Width="auto" Content="SSF"
-                     ToolTip="Substitute -&gt; Spore -&gt; False Swipe" Foreground="White"
-                     IsEnabled="{Binding PremiumEnabled}"
-                     IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.SSF}}"/>
-        <RadioButton Margin="45,0,0,0" HorizontalAlignment="Left" Width="auto" Content="FA"
-                     ToolTip="False Swipe -&gt; Assist" Foreground="White" IsEnabled="{Binding PremiumEnabled}"
-                     IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.FA}}"/>
+        <RadioButton HorizontalAlignment="Left" Width="auto" Content="SFS" ToolTip="Substitute -&gt; False Swipe -&gt; Spore" Foreground="#FFFFFFFF" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.SFS}}" />
+        <RadioButton Margin="45,0,0,0" HorizontalAlignment="Left" Width="auto" Content="SSF" ToolTip="Substitute -&gt; Spore -&gt; False Swipe" Foreground="#FFFFFFFF" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.SSF}}" />
+        <RadioButton Margin="45,0,0,0" HorizontalAlignment="Left" Width="auto" Content="FA" ToolTip="False Swipe -&gt; Assist" Foreground="#FFFFFFFF" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding CatchMovesRoutine, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static model:CatchMovesRoutine.FA}}" />
       </StackPanel>
-      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="5" Grid.ColumnSpan="2"/>
-      <TextBlock Margin="10,10,0,0" Text="Automatic Routes" Grid.Row="6" Grid.Column="0" Foreground="White"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Teleport Back"
-                Foreground="White"
-                ToolTip="Will automatically use Teleport instead of walking back the selected Route while using 'Auto Sweet Scent'."
-                IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding TeleportBack}"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="Escape Rope / Dig"
-                Foreground="White"
-                ToolTip="Will automatically use Escape Rope / Dig in holes when you get stuck while using 'Auto Sweet Scent'."
-                IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding EscapeRope}"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Slow Mode"
-                Foreground="White" ToolTip="A slow mode for 'Auto Sweet Scent'."
-                IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SlowMode}"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Multi Target Move (1)"
-                Foreground="White"
-                ToolTip="Will automatically use Move 1 (for example a multi target move to clear up horde easier) when using 'Auto Walk', 'Auto Sweet Scent' or 'Manual SS'."
-                IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding MultiTarget}"/>
-      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="9" Grid.ColumnSpan="2"/>
-      <TextBlock Margin="10,10,0,0" Text="Discord Bot" Grid.Row="10" Grid.Column="0" Foreground="White"
-                 ToolTip="Enter your Discord Username to receive notifications whenever you detect or catch a shiny, steal an item with thief, or throw a pokeball.
-Type the command !status [premium id] to the POKE+ bot on discord in a private message to receive status updates.
-!start [premium id] (to start your bot)
-!stop [premium id] (to stop your bot)"/>
+      <GridSplitter IsEnabled="False" Margin="10,10,10,0" Height="2" Grid.Row="5" Grid.ColumnSpan="2" />
+      <TextBlock Margin="10,10,0,0" Text="Automatic Routes" Grid.Row="6" Grid.Column="0" Foreground="#FFFFFFFF" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Teleport Back" Foreground="#FFFFFFFF" ToolTip="Will automatically use Teleport instead of walking back the selected Route while using 'Auto Sweet Scent'." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding TeleportBack}" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="Escape Rope / Dig" Foreground="#FFFFFFFF" ToolTip="Will automatically use Escape Rope / Dig in holes when you get stuck while using 'Auto Sweet Scent'." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding EscapeRope}" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Slow Mode" Foreground="#FFFFFFFF" ToolTip="A slow mode for 'Auto Sweet Scent'." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SlowMode}" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Multi Target Move (1)" Foreground="#FFFFFFFF" ToolTip="Will automatically use Move 1 (for example a multi target move to clear up horde easier) when using 'Auto Walk', 'Auto Sweet Scent' or 'Manual SS'." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding MultiTarget}" />
+      <GridSplitter IsEnabled="False" Margin="10,10,10,0" Height="2" Grid.Row="9" Grid.ColumnSpan="2" />
+      <TextBlock Margin="10,10,0,0" Text="Discord Bot" Grid.Row="10" Grid.Column="0" Foreground="#FFFFFFFF" ToolTip="Enter your Discord Username to receive notifications whenever you detect or catch a shiny, steal an item with thief, or throw a pokeball.&#xD;&#xA;Type the command !status [premium id] to the POKE+ bot on discord in a private message to receive status updates.&#xD;&#xA;!start [premium id] (to start your bot)&#xD;&#xA;!stop [premium id] (to stop your bot)" />
       <StackPanel Margin="10,10,0,0" Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2">
-        <TextBox Width="150" Watermark="Discord Username" Foreground="White" Text="{Binding DiscordUsername}"/>
-        <Button Margin="12,0,0,0" Height="16" ToolTip="Discord DirectMessage Settings" Background="Transparent"
-                BorderThickness="0" FocusBorderThickness="0" Command="{Binding DiscordWindowCommand}">
+        <TextBox Width="150" p13:TextBoxHelper.Watermark="Discord Username" Foreground="#FFFFFFFF" Text="{Binding DiscordUsername}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+        <Button Margin="12,0,0,0" Height="16" ToolTip="Discord DirectMessage Settings" Background="#00FFFFFF" BorderThickness="0" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:ControlsHelper.FocusBorderThickness="0" Command="{Binding DiscordWindowCommand}">
           <ContentControl.Content>
-            <PackIconMaterial FrameworkElement.Height="13" Control.Padding="-6px" FrameworkElement.HorizontalAlignment="Stretch"
-                              FrameworkElement.VerticalAlignment="Stretch"
-                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="BellCircle"/>
+            <iconpacks:PackIconMaterial FrameworkElement.Height="13" Control.Padding="-6px" FrameworkElement.HorizontalAlignment="Stretch" FrameworkElement.VerticalAlignment="Stretch" Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" xmlns:iconpacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" iconpacks:PackIconMaterial.Kind="BellCircle" />
           </ContentControl.Content>
         </Button>
       </StackPanel>
     </Grid>
-    <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25" FrameworkElement.Margin="10"
-                      FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top"
-                      Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="Star"/>
+    <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25" FrameworkElement.Margin="10" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top" Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" p11:PackIconMaterial.Kind="Star" xmlns:p11="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
   </Grid>
 </UserControl>

@@ -1,11 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PokeMMO_.SubWindow
-// Assembly: PokeMMO+, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DFFE97-DBAD-4EA1-90EA-586E112BF54C
-// Assembly location: C:\Users\admin\Desktop\koi2-cleaned-cleaned_unpacked.exe
-
-using PokeMMO_.Classes;
-using PokeMMO_.ViewModels;
 using System;
 using System.CodeDom.Compiler;
 using System.ComponentModel;
@@ -15,111 +7,129 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using PokeMMO_.Classes;
+using PokeMMO_.ViewModels;
 
+namespace PokeMMO_;
 
-namespace PokeMMO_
+public class SubWindow : Window, IComponentConnector
 {
-    public class SubWindow : Window, IComponentConnector
-    {
-      internal SubWindow MySubWindow;
-      internal TextBlock lbl_shinycounter;
-      internal TextBlock lbl_timer;
-      internal TextBlock lbl_ballsthrowncounter;
-      internal TextBlock lbl_encounterscount;
-      internal TextBlock lbl_status;
-      internal RichTextBox txt_richtextbox;
-      internal Button btn_show;
-      internal Button btn_hide;
-      private bool _contentLoaded;
+	internal SubWindow MySubWindow;
 
-      public SubWindow()
-      {
-        this.InitializeComponent();
-        this.MySubWindow.Title = Class2.randomTitle();
-        this.MySubWindow.DataContext = (object) SubViewModel.Instance;
-        this.Left = SystemParameters.PrimaryScreenWidth - this.method_0();
-        this.Top = SystemParameters.PrimaryScreenHeight - this.method_1();
-        this.btn_show.Click += new RoutedEventHandler(this.btn_show_Click);
-        this.btn_hide.Click += new RoutedEventHandler(this.btn_hide_Click);
-      }
+	internal TextBlock lbl_shinycounter;
 
-      private void btn_show_Click(object sender, RoutedEventArgs e)
-      {
-        ((Window) Application.Current.Windows.OfType<MainWindow>().SingleOrDefault<MainWindow>()).Show();
-      }
+	internal TextBlock lbl_timer;
 
-      private void btn_hide_Click(object sender, RoutedEventArgs e)
-      {
-        ((Window) Application.Current.Windows.OfType<MainWindow>().SingleOrDefault<MainWindow>()).Hide();
-        Includes.WindowHelper.BringProcessToFront();
-      }
+	internal TextBlock lbl_ballsthrowncounter;
 
-      private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-      {
-        if (e.LeftButton != MouseButtonState.Pressed)
-          return;
-        this.DragMove();
-      }
+	internal TextBlock lbl_encounterscount;
 
-      private void txt_richtextbox_TextChanged(object sender, TextChangedEventArgs e)
-      {
-        this.txt_richtextbox.ScrollToEnd();
-      }
+	internal TextBlock lbl_status;
 
-      [DebuggerNonUserCode]
-      [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-      public void InitializeComponent()
-      {
-        if (this._contentLoaded)
-          return;
-        this._contentLoaded = true;
-        Application.LoadComponent((object) this, new Uri("/PokeMMO+;component/subwindow.xaml", UriKind.Relative));
-      }
+	internal RichTextBox txt_richtextbox;
 
-      [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-      [DebuggerNonUserCode]
-      [EditorBrowsable(EditorBrowsableState.Never)]
-      void IComponentConnector.Connect(int connectionId, object target)
-      {
-        switch (connectionId)
-        {
-          case 1:
-            this.MySubWindow = (SubWindow) target;
-            this.MySubWindow.MouseDown += new MouseButtonEventHandler(this.Window_MouseDown);
-            break;
-          case 2:
-            this.lbl_shinycounter = (TextBlock) target;
-            break;
-          case 3:
-            this.lbl_timer = (TextBlock) target;
-            break;
-          case 4:
-            this.lbl_ballsthrowncounter = (TextBlock) target;
-            break;
-          case 5:
-            this.lbl_encounterscount = (TextBlock) target;
-            break;
-          case 6:
-            this.lbl_status = (TextBlock) target;
-            break;
-          case 7:
-            this.txt_richtextbox = (RichTextBox) target;
-            this.txt_richtextbox.TextChanged += new TextChangedEventHandler(this.txt_richtextbox_TextChanged);
-            break;
-          case 8:
-            this.btn_show = (Button) target;
-            break;
-          case 9:
-            this.btn_hide = (Button) target;
-            break;
-          default:
-            this._contentLoaded = true;
-            break;
-        }
-      }
+	internal Button btn_show;
 
-      double method_0() => this.Width;
+	internal Button btn_hide;
 
-      double method_1() => this.Height;
-    }
+	private bool _contentLoaded;
+
+	public SubWindow()
+	{
+		InitializeComponent();
+		MySubWindow.Title = RandomTitle.Generate();
+		MySubWindow.DataContext = SubViewModel.Instance;
+		base.Left = SystemParameters.PrimaryScreenWidth - this.method_0();
+		base.Top = SystemParameters.PrimaryScreenHeight - this.method_1();
+		btn_show.Click += btn_show_Click;
+		btn_hide.Click += btn_hide_Click;
+	}
+
+	private void btn_show_Click(object sender, RoutedEventArgs e)
+	{
+		((Window)(object)Application.Current.Windows.OfType<MainWindow>().SingleOrDefault())?.Show();
+	}
+
+	private void btn_hide_Click(object sender, RoutedEventArgs e)
+	{
+		((Window)(object)Application.Current.Windows.OfType<MainWindow>().SingleOrDefault())?.Hide();
+		Includes.WindowHelper.BringProcessToFront();
+	}
+
+	private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+	{
+		if (e.LeftButton == MouseButtonState.Pressed)
+		{
+			DragMove();
+		}
+	}
+
+	private void txt_richtextbox_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		txt_richtextbox.ScrollToEnd();
+	}
+
+	[DebuggerNonUserCode]
+	[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
+	public void InitializeComponent()
+	{
+		if (!_contentLoaded)
+		{
+			_contentLoaded = true;
+			Uri resourceLocator = new Uri("/PokeMMO+;component/views/subwindow.xaml", UriKind.Relative);
+			Application.LoadComponent(this, resourceLocator);
+		}
+	}
+
+	[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerNonUserCode]
+	void IComponentConnector.Connect(int connectionId, object target)
+	{
+		switch (connectionId)
+		{
+		default:
+			_contentLoaded = true;
+			break;
+		case 1:
+			MySubWindow = (SubWindow)target;
+			MySubWindow.MouseDown += Window_MouseDown;
+			break;
+		case 2:
+			lbl_shinycounter = (TextBlock)target;
+			break;
+		case 3:
+			lbl_timer = (TextBlock)target;
+			break;
+		case 4:
+			lbl_ballsthrowncounter = (TextBlock)target;
+			break;
+		case 5:
+			lbl_encounterscount = (TextBlock)target;
+			break;
+		case 6:
+			lbl_status = (TextBlock)target;
+			break;
+		case 7:
+			txt_richtextbox = (RichTextBox)target;
+			txt_richtextbox.TextChanged += txt_richtextbox_TextChanged;
+			break;
+		case 8:
+			btn_show = (Button)target;
+			break;
+		case 9:
+			btn_hide = (Button)target;
+			break;
+		}
+	}
+
+	double method_0()
+	{
+		return base.Width;
+	}
+
+	double method_1()
+	{
+		return base.Height;
+	}
 }

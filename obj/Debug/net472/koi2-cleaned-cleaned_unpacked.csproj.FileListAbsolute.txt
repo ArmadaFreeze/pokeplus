@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\koi2-cleaned-cleaned_unpacked.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\views\chosenpokeballwindow.g.cs
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\views\discordwindow.g.cs
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\views\subwindow.g.cs
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\App.g.cs
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\GeneratedInternalTypeHelper.g.cs
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\PokeMMO+_MarkupCompile.cache
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\PokeMMO+_MarkupCompile.lref
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\koi2-cleaned-cleaned_unpacked.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\PokeMMO+.exe.config
+C:\Users\admin\Desktop\New folder\obj\Debug\net472\PokeMMO+_Content.g.cs

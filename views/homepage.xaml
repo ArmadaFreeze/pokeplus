@@ -1,533 +1,352 @@
-<UserControl x:Class="PokeMMO_.Views.HomePage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:model="clr-namespace:PokeMMO_.Model"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:converter="clr-namespace:PokeMMO_.Converter"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
-             x:Name="MyHomePage">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="PokeMMO_.Views.HomePage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:model="clr-namespace:PokeMMO_.Model" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:converter="clr-namespace:PokeMMO_.Converter" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit" x:Name="MyHomePage" xmlns:views="clr-namespace:PokeMMO_.Views">
   <FrameworkElement.Resources>
-    <Style x:Key="CheckComboBoxStyle1" TargetType="{x:Type CheckComboBox}">
-      <Setter Property="Control.Background" Value="{DynamicResource MahApps.Brushes.Control.Background}"/>
-      <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}"/>
-      <Setter Property="Control.BorderThickness" Value="{DynamicResource ComboBoxBorderThemeThickness}"/>
-      <Setter Property="Control.FontFamily" Value="{DynamicResource MahApps.Fonts.Family.Control}"/>
-      <Setter Property="Control.FontSize" Value="{DynamicResource MahApps.Font.Size.Content}"/>
-      <Setter Property="Control.Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
-      <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-      <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
-      <Setter Property="FrameworkElement.MinHeight" Value="26"/>
-      <Setter Property="Control.Padding" Value="4"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
-      <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-      <Setter Property="UIElement.SnapsToDevicePixels" Value="true"/>
-      <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-      <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-      <Setter Property="Control.Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="{x:Type CheckComboBox}">
-            <Grid x:Name="MainGrid" SnapsToDevicePixels="true">
-              <Popup x:Name="PART_Popup" AllowsTransparency="true" Margin="1"
-                     PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
-                     Placement="Bottom" StaysOpen="false"
-                     IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                <Grid MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
-                  <Border x:Name="DropDownBorder"
-                          BorderBrush="{DynamicResource {x:Static JetSystemColors.WindowFrameBrushKey}}" BorderThickness="1"
-                          Background="{DynamicResource {x:Static JetSystemColors.WindowBrushKey}}"
-                          MaxHeight="{Binding MaxDropDownHeight, RelativeSource={RelativeSource TemplatedParent}}">
-                    <ScrollViewer x:Name="DropDownScrollViewer">
-                      <Grid RenderOptions.ClearTypeHint="Enabled">
-                        <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                          <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=DropDownBorder}"
-                                     Height="{Binding ActualHeight, ElementName=DropDownBorder}"
-                                     Width="{Binding ActualWidth, ElementName=DropDownBorder}"/>
-                        </Canvas>
-                        <StackPanel>
-                          <SelectAllSelectorItem x:Name="PART_SelectAllSelectorItem"
-                                                 ContentControl.Content="{TemplateBinding SelectAllSelector.SelectAllContent}"
-                                                 UIElement.Visibility="{Binding Path=IsSelectAllActive, RelativeSource={RelativeSource TemplatedParent}, Converter={BooleanToVisibilityConverter}}"/>
-                          <ItemsPresenter x:Name="PART_ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"
-                                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
-                        </StackPanel>
-                      </Grid>
-                    </ScrollViewer>
-                  </Border>
-                </Grid>
-              </Popup>
-              <Border BorderBrush="{TemplateBinding Control.BorderBrush}"
-                      BorderThickness="{TemplateBinding Control.BorderThickness}"
-                      Background="{TemplateBinding Control.Background}"/>
-              <ToggleButton x:Name="PART_DropDownButton" BorderBrush="{TemplateBinding Control.BorderBrush}"
-                            Background="{TemplateBinding Control.Background}" Content="Catch Moves" Focusable="false"
-                            HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                            Padding="{TemplateBinding Control.Padding}"
-                            VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            IsHitTestVisible="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Converter={InverseBoolConverter}}">
-                <FrameworkElement.Style>
-                  <Style TargetType="{x:Type ToggleButton}">
-                    <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="true"/>
-                    <Setter Property="Control.IsTabStop" Value="false"/>
-                    <Setter Property="UIElement.Focusable" Value="false"/>
-                    <Setter Property="Control.Padding" Value="2"/>
-                    <Setter Property="Control.Template">
-                      <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                          <ButtonChrome x:Name="Chrome" Control.BorderBrush="{TemplateBinding Control.BorderBrush}"
-                                        Control.Background="{TemplateBinding Control.Background}" CornerRadius="0" RenderNormal="false"
-                                        RenderEnabled="{TemplateBinding UIElement.IsEnabled}" UIElement.SnapsToDevicePixels="true"
-                                        RenderMouseOver="{Binding IsMouseOver, ElementName=PART_DropDownButton}"
-                                        RenderPressed="{Binding IsPressed, ElementName=PART_DropDownButton}">
-                            <Grid>
-                              <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
-                              </Grid.ColumnDefinitions>
-                              <TextBox x:Name="TextBox" BorderThickness="0" Background="Transparent" Foreground="White" Cursor="Arrow"
-                                       Focusable="false" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                                       HorizontalScrollBarVisibility="Hidden" IsTabStop="{TemplateBinding Control.IsTabStop}"
-                                       IsReadOnly="true" Margin="{TemplateBinding Control.Padding}"
-                                       SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Text="Catch Moves"
-                                       VerticalScrollBarVisibility="Hidden"
-                                       VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
-                                <FrameworkElement.Style>
-                                  <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                      <Trigger Property="UIElement.IsEnabled" Value="false">
-                                        <Setter Property="Control.Background" Value="Transparent"/>
-                                      </Trigger>
-                                      <Trigger Property="UIElement.IsEnabled" Value="true">
-                                        <Setter Property="Control.Foreground" Value="#7de6fa"/>
-                                      </Trigger>
-                                    </Style.Triggers>
-                                  </Style>
-                                </FrameworkElement.Style>
-                              </TextBox>
-                              <Grid Column="1" HorizontalAlignment="Right"
-                                    Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                                <Path x:Name="Arrow"
-                                      Data="M 0,1 C 0,1 0,0 0,0 0,0 3,0 3,0 3,0 3,1 3,1 3,1 4,1 4,1 4,1 4,0 4,0 4,0 7,0 7,0 7,0 7,1 7,1 7,1 6,1 6,1 6,1 6,2 6,2 6,2 5,2 5,2 5,2 5,3 5,3 5,3 4,3 4,3 4,3 4,4 4,4 4,4 3,4 3,4 3,4 3,3 3,3 3,3 2,3 2,3 2,3 2,2 2,2 2,2 1,2 1,2 1,2 1,1 1,1 1,1 0,1 0,1 Z"
-                                      Fill="White" HorizontalAlignment="Center" Margin="3,0" VerticalAlignment="Center"/>
+    <ResourceDictionary>
+      <BooleanToVisibilityConverter x:Key="BoolToVis" />
+      <Style x:Key="CheckComboBoxStyle1" xmlns:toolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" TargetType="{x:Type toolkit:CheckComboBox}">
+        <Setter Property="Control.Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
+        <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
+        <Setter Property="Control.BorderThickness" Value="{DynamicResource ComboBoxBorderThemeThickness}" />
+        <Setter Property="Control.FontFamily" Value="{DynamicResource MahApps.Fonts.Family.Control}" />
+        <Setter Property="Control.FontSize" Value="{DynamicResource MahApps.Font.Size.Content}" />
+        <Setter Property="Control.Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Control.VerticalContentAlignment" Value="Center" />
+        <Setter Property="FrameworkElement.MinHeight" Value="26" />
+        <Setter Property="Control.Padding" Value="4" />
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type toolkit:CheckComboBox}">
+              <Grid Name="MainGrid" SnapsToDevicePixels="True">
+                <Popup Name="PART_Popup" AllowsTransparency="True" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom" StaysOpen="False" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                  <Grid MinWidth="{Binding ActualWidth, ElementName=MainGrid}">
+                    <Border Name="DropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" MaxHeight="{Binding MaxDropDownHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                      <ScrollViewer Name="DropDownScrollViewer">
+                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                          <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                            <Rectangle Name="OpaqueRect" Fill="{Binding Background, ElementName=DropDownBorder}" Height="{Binding ActualHeight, ElementName=DropDownBorder}" Width="{Binding ActualWidth, ElementName=DropDownBorder}" />
+                          </Canvas>
+                          <StackPanel>
+                            <primitives:SelectAllSelectorItem xmlns:primitives="clr-namespace:Xceed.Wpf.Toolkit.Primitives;assembly=Xceed.Wpf.Toolkit" primitives:SelectAllSelectorItem.Name="PART_SelectAllSelectorItem" ContentControl.Content="{TemplateBinding SelectAllContent}">
+                              <UIElement.Visibility>
+                                <Binding Path="IsSelectAllActive" RelativeSource="{RelativeSource TemplatedParent}">
+                                  <Binding.Converter>
+                                    <BooleanToVisibilityConverter />
+                                  </Binding.Converter>
+                                </Binding>
+                              </UIElement.Visibility>
+                            </primitives:SelectAllSelectorItem>
+                            <ItemsPresenter Name="PART_ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                          </StackPanel>
+                        </Grid>
+                      </ScrollViewer>
+                    </Border>
+                  </Grid>
+                </Popup>
+                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" />
+                <ToggleButton Name="PART_DropDownButton" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Content="Catch Moves" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                  <UIElement.IsHitTestVisible>
+                    <Binding Path="IsDropDownOpen" RelativeSource="{RelativeSource TemplatedParent}">
+                      <Binding.Converter>
+                        <converters:InverseBoolConverter xmlns:converters="clr-namespace:Xceed.Wpf.Toolkit.Core.Converters;assembly=Xceed.Wpf.Toolkit" />
+                      </Binding.Converter>
+                    </Binding>
+                  </UIElement.IsHitTestVisible>
+                  <FrameworkElement.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                      <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+                      <Setter Property="IsTabStop" Value="False" />
+                      <Setter Property="Focusable" Value="False" />
+                      <Setter Property="Padding" Value="2" />
+                      <Setter Property="Template">
+                        <Setter.Value>
+                          <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <chromes:ButtonChrome xmlns:chromes="clr-namespace:Xceed.Wpf.Toolkit.Chromes;assembly=Xceed.Wpf.Toolkit" chromes:ButtonChrome.Name="Chrome" Control.BorderBrush="{TemplateBinding BorderBrush}" Control.Background="{TemplateBinding Background}" chromes:ButtonChrome.CornerRadius="0" chromes:ButtonChrome.RenderNormal="False" chromes:ButtonChrome.RenderEnabled="{TemplateBinding IsEnabled}" UIElement.SnapsToDevicePixels="True" chromes:ButtonChrome.RenderMouseOver="{Binding IsMouseOver, ElementName=PART_DropDownButton}" chromes:ButtonChrome.RenderPressed="{Binding IsPressed, ElementName=PART_DropDownButton}">
+                              <Grid>
+                                <Grid.ColumnDefinitions>
+                                  <ColumnDefinition Width="*" />
+                                  <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="TextBox" BorderThickness="0" Background="#00FFFFFF" Foreground="#FFFFFFFF" Cursor="Arrow" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" HorizontalScrollBarVisibility="Hidden" IsTabStop="{TemplateBinding IsTabStop}" IsReadOnly="True" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Text="Catch Moves" VerticalScrollBarVisibility="Hidden" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                  <FrameworkElement.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                      <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                          <Setter Property="Background" Value="#00FFFFFF" />
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="True">
+                                          <Setter Property="Foreground" Value="#7de6fa" />
+                                        </Trigger>
+                                      </Style.Triggers>
+                                    </Style>
+                                  </FrameworkElement.Style>
+                                </TextBox>
+                                <Grid Column="1" HorizontalAlignment="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                  <Path Name="Arrow" Data="M0,1 C0,1 0,0 0,0 C0,0 3,0 3,0 C3,0 3,1 3,1 C3,1 4,1 4,1 C4,1 4,0 4,0 C4,0 7,0 7,0 C7,0 7,1 7,1 C7,1 6,1 6,1 C6,1 6,2 6,2 C6,2 5,2 5,2 C5,2 5,3 5,3 C5,3 4,3 4,3 C4,3 4,4 4,4 C4,4 3,4 3,4 C3,4 3,3 3,3 C3,3 2,3 2,3 C2,3 2,2 2,2 C2,2 1,2 1,2 C1,2 1,1 1,1 C1,1 0,1 0,1" Fill="#FFFFFFFF" HorizontalAlignment="Center" Margin="3,0" VerticalAlignment="Center" />
+                                </Grid>
                               </Grid>
-                            </Grid>
-                          </ButtonChrome>
-                          <ControlTemplate.Triggers>
-                            <Trigger Property="ToggleButton.IsChecked" Value="True">
-                              <Setter TargetName="Chrome" Property="ButtonChrome.RenderPressed" Value="true"/>
-                            </Trigger>
-                            <Trigger Property="UIElement.IsEnabled" Value="false">
-                              <Setter TargetName="Arrow" Property="Shape.Fill" Value="#FFAFAFAF"/>
-                            </Trigger>
-                            <DataTrigger Value="True"
-                                         Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type CheckComboBox}}}">
-                              <Setter TargetName="TextBox" Property="TextBoxBase.IsReadOnly" Value="false"/>
-                              <Setter TargetName="TextBox" Property="UIElement.Focusable" Value="true"/>
-                              <Setter TargetName="TextBox" Value="{x:Null}" Property="FrameworkElement.Cursor"/>
-                              <Setter Property="Control.IsTabStop" Value="true"/>
-                            </DataTrigger>
-                            <MultiDataTrigger>
-                              <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type CheckComboBox}}}"
-                                           Value="True"/>
-                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type CheckComboBox}}}"
-                                           Value="True"/>
-                              </MultiDataTrigger.Conditions>
-                              <Setter TargetName="TextBox" Value="{Binding ElementName=TextBox}" Property="FocusManager.FocusedElement"/>
-                            </MultiDataTrigger>
-                          </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                      </Setter.Value>
-                    </Setter>
-                  </Style>
-                </FrameworkElement.Style>
-              </ToggleButton>
-            </Grid>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-      <Style.Triggers>
-        <Trigger Property="UIElement.IsMouseOver" Value="true">
-          <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.ComboBox.Border.MouseOver}"/>
-          <Setter Property="Control.Background" Value="{DynamicResource MahApps.Brushes.Gray8}"/>
-        </Trigger>
-        <Trigger Property="UIElement.IsKeyboardFocusWithin" Value="true">
-          <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.ComboBox.Border.Focus}"/>
-        </Trigger>
-        <Trigger Property="CheckComboBox.IsEditable" Value="true">
-          <Setter Property="Control.IsTabStop" Value="false"/>
-        </Trigger>
-      </Style.Triggers>
-    </Style>
-    <Style TargetType="{x:Type SelectorItem}">
-      <Setter Property="Control.Template">
-        <Setter.Value>
-          <ControlTemplate TargetType="{x:Type SelectorItem}">
-            <Border x:Name="_background" Background="{TemplateBinding Control.Background}"
-                    BorderBrush="{TemplateBinding Control.BorderBrush}"
-                    BorderThickness="{TemplateBinding Control.BorderThickness}">
-              <CheckBox Padding="{TemplateBinding Control.Padding}"
-                        HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-                        IsChecked="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}}">
-                <ContentControl Content="{TemplateBinding ContentControl.Content}"
-                                ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}"
-                                ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-                                Foreground="{TemplateBinding Control.Foreground}"/>
-              </CheckBox>
-            </Border>
-            <ControlTemplate.Triggers>
-              <Trigger Property="UIElement.IsMouseOver" Value="true">
-                <Setter TargetName="_background" Property="Border.Background" Value="#66AA00FF"/>
-              </Trigger>
-            </ControlTemplate.Triggers>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
+                            </chromes:ButtonChrome>
+                            <ControlTemplate.Triggers>
+                              <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter TargetName="Chrome" Property="ButtonChrome.RenderPressed" Value="True" />
+                              </Trigger>
+                              <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Arrow" Property="Shape.Fill" Value="#FFAFAFAF" />
+                              </Trigger>
+                              <DataTrigger Value="True" Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type toolkit:CheckComboBox}}}">
+                                <Setter TargetName="TextBox" Property="TextBoxBase.IsReadOnly" Value="False" />
+                                <Setter TargetName="TextBox" Property="Focusable" Value="True" />
+                                <Setter TargetName="TextBox" Property="FrameworkElement.Cursor" Value="{x:Null}" />
+                                <Setter Property="IsTabStop" Value="True" />
+                              </DataTrigger>
+                              <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                  <Condition Value="True" Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type toolkit:CheckComboBox}}}" />
+                                  <Condition Value="True" Binding="{Binding IsFocused, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type toolkit:CheckComboBox}}}" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="TextBox" Property="FocusManager.FocusedElement" Value="{Binding ElementName=TextBox}" />
+                              </MultiDataTrigger>
+                            </ControlTemplate.Triggers>
+                          </ControlTemplate>
+                        </Setter.Value>
+                      </Setter>
+                    </Style>
+                  </FrameworkElement.Style>
+                </ToggleButton>
+              </Grid>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+          <Trigger Property="UIElement.IsMouseOver" Value="True">
+            <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.ComboBox.Border.MouseOver}" />
+            <Setter Property="Control.Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+          </Trigger>
+          <Trigger Property="UIElement.IsKeyboardFocusWithin" Value="True">
+            <Setter Property="Control.BorderBrush" Value="{DynamicResource MahApps.Brushes.ComboBox.Border.Focus}" />
+          </Trigger>
+          <Trigger Property="toolkit:CheckComboBox.IsEditable" Value="True">
+            <Setter Property="Control.IsTabStop" Value="False" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="{x:Type primitives:SelectorItem}" xmlns:primitives="clr-namespace:Xceed.Wpf.Toolkit.Primitives;assembly=Xceed.Wpf.Toolkit" TargetType="{x:Type primitives:SelectorItem}">
+        <Setter Property="Control.Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type primitives:SelectorItem}">
+              <Border Name="_background" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <CheckBox Padding="{TemplateBinding Padding}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}}">
+                  <ContentControl Content="{TemplateBinding Content}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" ContentTemplate="{TemplateBinding ContentTemplate}" Foreground="{TemplateBinding Foreground}" />
+                </CheckBox>
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                  <Setter TargetName="_background" Property="Border.Background" Value="#66AA00FF" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </ResourceDictionary>
   </FrameworkElement.Resources>
   <Grid>
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="auto"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="*" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
-      <ComboBox Margin="10,12,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="23"
-                Watermark="Battle Mode">
-        <ComboBoxItem Content="Fight" ToolTip="Fight automatically in encounters."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Fight}, Converter={StaticResource EnumToBoolConverter}}"/>
-        <ComboBoxItem Content="Run"
-                      ToolTip="Run automatically in encounters. 
-Use this in Combination with Catch Shiny or Anti AFK Shiny for Shiny farming."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Run}, Converter={StaticResource EnumToBoolConverter}}"/>
-        <ComboBoxItem Content="Catch" ToolTip="Catch automatically in encounters."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Catch}, Converter={StaticResource EnumToBoolConverter}}"/>
-        <ComboBoxItem Content="Pay Day" Foreground="#7de6fa" ToolTip="Uses Pay Day against Pokemon to farm money!"
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDay}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="Pay Day + Catch [MIXED]" Foreground="#7de6fa"
-                      ToolTip="Uses Pay Day or Catch depending on your settings!"
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDayCatchMixed}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="Pay Day + Thief [MIXED]" Foreground="#7de6fa"
-                      ToolTip="Uses Pay Day or Thief depending on your settings!"
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDayThiefMixed}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="Thief" Foreground="#7de6fa"
-                      ToolTip="Uses Thief against Pokemon to steal their item for money!"
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Thief}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="Safari" Foreground="#7de6fa" ToolTip="Catch automatically in Safari encounters."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Safari}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="Sell Box" ToolTip="Sells automatically all Pokemon in the current Box."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.SellBox}, Converter={StaticResource EnumToBoolConverter}}"/>
-        <ComboBoxItem Content="Mail Claim" ToolTip="Claim automatically all mails in the PC."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.MailClaim}, Converter={StaticResource EnumToBoolConverter}}"/>
-        <ComboBoxItem Content="GTL Sniper" Foreground="#7de6fa" ToolTip="GTL Sniper"
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.GTLSniper}, Converter={StaticResource EnumToBoolConverter}}"
-                      IsEnabled="{Binding PremiumEnabled}"/>
-        <ComboBoxItem Content="None" ToolTip="Does nothing in encounters so you can battle manually."
-                      IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.None}, Converter={StaticResource EnumToBoolConverter}}"/>
+      <ComboBox Margin="10,12,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="23" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:TextBoxHelper.Watermark="Battle Mode">
+        <ComboBoxItem Content="Fight" ToolTip="Fight automatically in encounters." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Fight}, Converter={StaticResource EnumToBoolConverter}}" />
+        <ComboBoxItem Content="Run" ToolTip="Run automatically in encounters. &#xA;Use this in Combination with Catch Shiny or Anti AFK Shiny for Shiny farming." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Run}, Converter={StaticResource EnumToBoolConverter}}" />
+        <ComboBoxItem Content="Catch" ToolTip="Catch automatically in encounters." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Catch}, Converter={StaticResource EnumToBoolConverter}}" />
+        <ComboBoxItem Content="Pay Day" Foreground="#7de6fa" ToolTip="Uses Pay Day against Pokemon to farm money!" IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDay}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Pay Day + Catch [MIXED]" Foreground="#7de6fa" ToolTip="Uses Pay Day or Catch depending on your settings!" IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDayCatchMixed}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Pay Day + Thief [MIXED]" Foreground="#7de6fa" ToolTip="Uses Pay Day or Thief depending on your settings!" IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.PayDayThiefMixed}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Thief" Foreground="#7de6fa" ToolTip="Uses Thief against Pokemon to steal their item for money!" IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Thief}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Pickpocket" Foreground="#7de6fa" ToolTip="Steals items from horde Pokemon using Imprison + Pickpocket ability!&#xA;Pokemon 1: Frisk ability + Imprison (Move Slot 2).&#xA;Pokemon 2: Pickpocket ability." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Pickpocket}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Safari" Foreground="#7de6fa" ToolTip="Catch automatically in Safari encounters." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.Safari}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sell Box" ToolTip="Sells automatically all Pokemon in the current Box." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.SellBox}, Converter={StaticResource EnumToBoolConverter}}" />
+        <ComboBoxItem Content="Mail Claim" ToolTip="Claim automatically all mails in the PC." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.MailClaim}, Converter={StaticResource EnumToBoolConverter}}" />
+        <ComboBoxItem Content="GTL Sniper" Foreground="#7de6fa" ToolTip="GTL Sniper" IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.GTLSniper}, Converter={StaticResource EnumToBoolConverter}}" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="None" ToolTip="Does nothing in encounters so you can battle manually." IsSelected="{Binding BotMode, ConverterParameter={x:Static model:BotMode.None}, Converter={StaticResource EnumToBoolConverter}}" />
       </ComboBox>
-      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="Level 1st"
-                ToolTip="Will instantly switch to the second pokemon in battles to level up the first one."
-                Visibility="{Binding FightOptionVisibility}" IsEnabled="{Binding LevelFirstEnabled}"
-                IsChecked="{Binding LevelFirst}"/>
-      <StackPanel Margin="1,10,0,0" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal"
-                  Visibility="{Binding CatchSpellsVisbility}">
-        <Button Grid.Row="0" Grid.Column="3" Background="Transparent" BorderThickness="0"
-                ToolTip="Choose Poke Ball" Command="{Binding ChoosePokeBallCommand}">
+      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="Level 1st" ToolTip="Will instantly switch to the second pokemon in battles to level up the first one." Visibility="{Binding FightOptionVisibility}" IsEnabled="{Binding LevelFirstEnabled}" IsChecked="{Binding LevelFirst}" />
+      <StackPanel Margin="1,10,0,0" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="{Binding CatchSpellsVisbility}">
+        <Button Grid.Row="0" Grid.Column="3" Background="#00FFFFFF" BorderThickness="0" ToolTip="Choose Poke Ball" Command="{Binding ChoosePokeBallCommand}">
           <ContentControl.Content>
-            <PackIconMaterial FrameworkElement.Width="18" FrameworkElement.Height="18"
-                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="Pokeball"/>
+            <iconpacks:PackIconMaterial FrameworkElement.Width="18" FrameworkElement.Height="18" Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" xmlns:iconpacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" iconpacks:PackIconMaterial.Kind="Pokeball" />
           </ContentControl.Content>
         </Button>
-        <CheckBox Margin="8,0,0,0" Content="Switch"
-                  ToolTip="Will instantly switch to the second pokemon in battles to catch with."
-                  IsChecked="{Binding CatchWithSecondPokemon}"/>
+        <CheckBox Margin="8,0,0,0" Content="Switch" ToolTip="Will instantly switch to the second pokemon in battles to catch with." IsChecked="{Binding CatchWithSecondPokemon}" />
       </StackPanel>
-      <StackPanel Orientation="Horizontal" Margin="10,12,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                  Visibility="{Binding CatchPokemonVisibility}">
-        <ComboBox Width="100" Height="23" Watermark="Pokemon" Text="{Binding CatchPokemon}"
-                  ItemsSource="{converter:EnumBindingSource {x:Type model:Pokemon}}"
-                  SelectedIndex="{Binding CatchPokemonSelectedIndex}"/>
-        <Button Margin="1,0,0,0" Height="28" ToolTip="Take Screenshot" Background="Transparent" BorderThickness="0"
-                FocusBorderThickness="0" Command="{Binding ScreenshotPokemonNameCommand}">
+      <StackPanel Orientation="Horizontal" Margin="10,12,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding CatchPokemonVisibility}">
+        <ComboBox Width="100" Height="23" p15:TextBoxHelper.Watermark="Pokemon" Text="{Binding CatchPokemon}" ItemsSource="{converter:EnumBindingSource {x:Type model:Pokemon}}" SelectedIndex="{Binding CatchPokemonSelectedIndex}" xmlns:p15="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+        <Button Margin="1,0,0,0" Height="28" ToolTip="Take Screenshot" Background="#00FFFFFF" BorderThickness="0" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:ControlsHelper.FocusBorderThickness="0" Command="{Binding ScreenshotPokemonNameCommand}">
           <ContentControl.Content>
-            <PackIconMaterial FrameworkElement.Width="16" FrameworkElement.Height="16"
-                              Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="MonitorScreenshot"/>
+            <PackIconMaterial FrameworkElement.Width="16" FrameworkElement.Height="16" Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" p18:PackIconMaterial.Kind="MonitorScreenshot" xmlns:p18="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
           </ContentControl.Content>
         </Button>
       </StackPanel>
-      <TextBox Margin="10,12,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Watermark="Sell Price"
-               Visibility="{Binding SellBoxVisibility}" Text="{Binding SellPrice}">
-      </TextBox>
-      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="IV 31"
-                ForegroundUnchecked="#64fb64" ForegroundUncheckedMouseOver="#64fb64" ForegroundChecked="#64fb64"
-                ForegroundCheckedMouseOver="#64fb64" ForegroundCheckedPressed="#64fb64"
-                ForegroundUncheckedPressed="#64fb64"
-                ToolTip="Will release pokemon that doesn't have at least 1 IV 31.
-The bot will only check pokemon that you've caught and it will not release any shinies.
-The stats window must be in default position (center of your screen), to reset the position (if you moved it) restart PokeMMO."
-                Visibility="{Binding IV31Visibility}" IsChecked="{Binding OnlyKeepIV31}"/>
-      <CheckComboBox FrameworkElement.Margin="5,12,10,0" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
-                     FrameworkElement.Height="23" Control.Foreground="White" Text="Catch Moves"
-                     ItemsControl.DisplayMemberPath="CatchSpells" SelectedMemberPath="Selected"
-                     FrameworkElement.Style="{DynamicResource CheckComboBoxStyle1}"
-                     ItemsControl.ItemsSource="{Binding Options}" UIElement.Visibility="{Binding CatchSpellsVisbility}"
-                     UIElement.IsEnabled="{Binding PremiumEnabled}"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="2+ Pay Day"
-                ToolTip="If you check the checkbox it will switch to the next Pay Day Pokemon when the PP hits 0. (for Auto Walk/Fish)
-For Auto SS, its active by default, since you walk back when PP of SS hits 0."
-                Visibility="{Binding PayDayOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                IsChecked="{Binding MorePayDay}"/>
-      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Multi Target Move (2)"
-                ToolTip="Will automatically use Move 2 after using Pay Day (for example a multi target move to clear up hordes easier)."
-                Visibility="{Binding PayDayOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                IsChecked="{Binding PayDayMultiTarget}"/>
+      <TextBox Margin="10,12,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" p14:TextBoxHelper.Watermark="Sell Price" Visibility="{Binding SellBoxVisibility}" Text="{Binding SellPrice}" xmlns:p14="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="IV 31" CheckBoxHelper.ForegroundUnchecked="#64fb64" CheckBoxHelper.ForegroundUncheckedMouseOver="#64fb64" CheckBoxHelper.ForegroundChecked="#64fb64" CheckBoxHelper.ForegroundCheckedMouseOver="#64fb64" CheckBoxHelper.ForegroundCheckedPressed="#64fb64" CheckBoxHelper.ForegroundUncheckedPressed="#64fb64" ToolTip="Will release pokemon that doesn't have at least 1 IV 31.&#xA;The bot will only check pokemon that you've caught and it will not release any shinies.&#xA;The stats window must be in default position (center of your screen), to reset the position (if you moved it) restart PokeMMO." Visibility="{Binding IV31Visibility}" IsChecked="{Binding OnlyKeepIV31}" />
+      <CheckComboBox FrameworkElement.Margin="5,12,10,0" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" FrameworkElement.Height="23" Control.Foreground="#FFFFFFFF" p14:CheckComboBox.Text="Catch Moves" ItemsControl.DisplayMemberPath="CatchSpells" xmlns:primitives="clr-namespace:Xceed.Wpf.Toolkit.Primitives;assembly=Xceed.Wpf.Toolkit" primitives:Selector.SelectedMemberPath="Selected" FrameworkElement.Style="{DynamicResource CheckComboBoxStyle1}" ItemsControl.ItemsSource="{Binding Options}" UIElement.Visibility="{Binding CatchSpellsVisbility}" UIElement.IsEnabled="{Binding PremiumEnabled}" xmlns:p14="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" xmlns="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="2+ Pay Day" ToolTip="If you check the checkbox it will switch to the next Pay Day Pokemon when the PP hits 0. (for Auto Walk/Fish)&#xA;For Auto SS, its active by default, since you walk back when PP of SS hits 0." Visibility="{Binding PayDayOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding MorePayDay}" />
+      <CheckBox Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Multi Target Move (2)" ToolTip="Will automatically use Move 2 after using Pay Day (for example a multi target move to clear up hordes easier)." Visibility="{Binding PayDayOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding PayDayMultiTarget}" />
       <StackPanel Orientation="Horizontal" Margin="10,10,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
-        <CheckBox Content="2+ Thief"
-                  ToolTip="If you check the checkbox it will switch to the second Thief Pokemon in order to get the second item.
-This option is slower but it makes sure you don't miss any items."
-                  Visibility="{Binding ThiefOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                  IsChecked="{Binding MoreThief}"/>
-        <CheckBox Margin="21,0,0,0" Content="Imprison"
-                  ToolTip="Will automatically use Imprison before using Thief.
-Imprison has to be placed in Move Slot 2."
-                  Visibility="{Binding ThiefOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                  IsChecked="{Binding Imprison}"/>
+        <CheckBox Content="2+ Thief" ToolTip="If you check the checkbox it will switch to the second Thief Pokemon in order to get the second item.&#xA;This option is slower but it makes sure you don't miss any items." Visibility="{Binding ThiefOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding MoreThief}" />
+        <CheckBox Margin="21,0,0,0" Content="Imprison" ToolTip="Will automatically use Imprison before using Thief.&#xA;Imprison has to be placed in Move Slot 2." Visibility="{Binding ThiefOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding Imprison}" />
       </StackPanel>
       <StackPanel Orientation="Horizontal" Margin="10,10,0,0" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
-        <CheckBox Checked="chk_rock_Checked" Content="Rock"
-                  ToolTip="Will automatically Throw a Rock before trying to catch the Pokemon."
-                  Visibility="{Binding SafariOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                  IsChecked="{Binding Rock}"/>
-        <CheckBox Checked="chk_bait_Checked" Margin="18,0,0,0" Content="Bait"
-                  ToolTip="Will automtically Throw a Bait before trying to catch the Pokemon."
-                  Visibility="{Binding SafariOptionVisibility}" IsEnabled="{Binding PremiumEnabled}"
-                  IsChecked="{Binding Bait}"/>
+        <CheckBox Content="Rock" ToolTip="Will automatically Throw a Rock before trying to catch the Pokemon." Visibility="{Binding SafariOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding Rock}" Checked="chk_rock_Checked" />
+        <CheckBox Margin="18,0,0,0" Content="Bait" ToolTip="Will automtically Throw a Bait before trying to catch the Pokemon." Visibility="{Binding SafariOptionVisibility}" IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding Bait}" Checked="chk_bait_Checked" />
       </StackPanel>
-      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="2" Grid.ColumnSpan="5"/>
-      <CheckBox Checked="chk_walk_Checked" Unchecked="chk_walk_Unchecked" x:Name="chk_walk" Margin="10,10,0,0"
-                Grid.Row="3" Grid.Column="0" Content="Walk"
-                ToolTip="Walk automatically.
-You can change the Walk Direction from Left-Right, Up-Down, Squares and Random."
-                IsChecked="{Binding Walk}"/>
-      <CheckBox Checked="chk_fish_Checked" x:Name="chk_fish" Margin="10,10,0,0" Grid.Row="3" Grid.Column="1"
-                Content="Fish"
-                ToolTip="Fish automatically.
-Rod needs to be placed on Hotkey Slot 1 in the Action Bar."
-                IsChecked="{Binding Fish}"/>
+      <GridSplitter IsEnabled="False" Margin="10,10,10,0" Height="2" Grid.Row="2" Grid.ColumnSpan="5" />
+      <CheckBox Name="chk_walk" Margin="10,10,0,0" Grid.Row="3" Grid.Column="0" Content="Walk" ToolTip="Walk automatically.&#xA;You can change the Walk Direction from Left-Right, Up-Down, Squares and Random." IsChecked="{Binding Walk}" Checked="chk_walk_Checked" />
+      <CheckBox Name="chk_fish" Margin="10,10,0,0" Grid.Row="3" Grid.Column="1" Content="Fish" ToolTip="Fish automatically.&#xA;Rod needs to be placed on Hotkey Slot 1 in the Action Bar." IsChecked="{Binding Fish}" Checked="chk_fish_Checked" />
       <StackPanel Orientation="Horizontal" Margin="10,10,0,0" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
-        <CheckBox Checked="chk_auto_walk_Checked" x:Name="chk_auto_walk" Content="Auto Walk/Fish"
-                  ToolTip="Walk/Fish automatically until you run out of any of your PP and automatically restore PP.
-Will use the selected 'Automatic Walk Route' to walk to the spot."
-                  IsChecked="{Binding AutoWalkFish}" Visibility="{Binding AutoWalkFishVisibility}"/>
-        <CheckBox Checked="chk_auto_sweet_cent_Checked" x:Name="chk_auto_sweet_cent" Margin="10,0,0,0"
-                  Content="Auto SS"
-                  ToolTip="Use Sweet Scent automatically until you run out of PP and automatically restore PP.
-Will use the selected 'Automatic Sweet Scent Route' to walk to the spot."
-                  IsChecked="{Binding AutoSweetScent}" Visibility="{Binding AutoSweetScentVisibility}"/>
+        <CheckBox Name="chk_auto_walk" Content="Auto Walk/Fish" ToolTip="Walk/Fish automatically until you run out of any of your PP and automatically restore PP.&#xA;Will use the selected 'Automatic Walk Route' to walk to the spot." IsChecked="{Binding AutoWalkFish}" Visibility="{Binding AutoWalkFishVisibility}" Checked="chk_auto_walk_Checked" />
+        <CheckBox Name="chk_auto_sweet_cent" Margin="10,0,0,0" Content="Auto SS" ToolTip="Use Sweet Scent automatically until you run out of PP and automatically restore PP.&#xA;Will use the selected 'Automatic Sweet Scent Route' to walk to the spot." IsChecked="{Binding AutoSweetScent}" Visibility="{Binding AutoSweetScentVisibility}" Checked="chk_auto_sweet_cent_Checked" />
       </StackPanel>
       <StackPanel Orientation="Horizontal" Margin="10,10,0,0" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
-        <CheckBox Checked="chk_safari_auto_walk_Checked" Content="Auto Walk"
-                  ToolTip="Will use the 'Automatic Walk Route' for Safari to walk to the spot and start to walk."
-                  IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SafariAutoWalk}"
-                  Visibility="{Binding SafariOptionVisibility}"/>
-        <CheckBox Checked="chk_safari_auto_fish_Checked" Margin="10,0,0,0" Content="Auto Fish"
-                  ToolTip="Will use the 'Automatic Fish Route' for Safari to walk to the spot and start to fish."
-                  IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SafariAutoFish}"
-                  Visibility="{Binding SafariOptionVisibility}"/>
+        <CheckBox Content="Auto Walk" ToolTip="Will use the 'Automatic Walk Route' for Safari to walk to the spot and start to walk." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SafariAutoWalk}" Visibility="{Binding SafariOptionVisibility}" Checked="chk_safari_auto_walk_Checked" />
+        <CheckBox Margin="10,0,0,0" Content="Auto Fish" ToolTip="Will use the 'Automatic Fish Route' for Safari to walk to the spot and start to fish." IsEnabled="{Binding PremiumEnabled}" IsChecked="{Binding SafariAutoFish}" Visibility="{Binding SafariOptionVisibility}" Checked="chk_safari_auto_fish_Checked" />
       </StackPanel>
-      <ToggleSwitch FrameworkElement.Margin="10,5,0,0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
-                    OnContent="Left Right" OffContent="Up Down" IsOn="{Binding WalkDirection}"/>
-      <StackPanel Orientation="Horizontal" Margin="10,5,0,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"
-                  Visibility="{Binding WalkOptionsVisibility}">
-        <CheckBox Checked="chk_squareswalkpattern_Checked" Content="Squares" IsChecked="{Binding SquaresWalkPattern}"/>
-        <CheckBox Checked="chk_randomwalkpattern_Checked" Margin="23,0,0,0" Content="Random"
-                  IsChecked="{Binding RandomWalkPattern}"/>
+      <controls:ToggleSwitch FrameworkElement.Margin="10,5,0,0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:ToggleSwitch.OnContent="Left Right" controls:ToggleSwitch.OffContent="Up Down" controls:ToggleSwitch.IsOn="{Binding WalkDirection}" />
+      <StackPanel Orientation="Horizontal" Margin="10,5,0,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Visibility="{Binding Walk, Converter={StaticResource BoolToVis}}">
+        <CheckBox Content="Squares" IsChecked="{Binding SquaresWalkPattern}" Checked="chk_squareswalkpattern_Checked" />
+        <CheckBox Margin="23,0,0,0" Content="Random" IsChecked="{Binding RandomWalkPattern}" Checked="chk_randomwalkpattern_Checked" />
       </StackPanel>
-      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23"
-                Watermark="Automatic Sweet Scent Routes" FontSize="10"
-                SelectedIndex="{Binding AutoSweetScentRoutesSelectedIndex}"
-                Visibility="{Binding AutoSweetScentRoutesVisibility}">
-        <ComboBoxItem Content="{Binding FreeRoutes0}"/>
-        <ComboBoxItem Content="{Binding FreeRoutes1}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[0]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[27]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[1]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[2]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[3]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[4]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[5]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[18]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[19]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[20]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[21]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[22]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[23]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[6]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[7]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[8]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[9]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[10]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[11]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[12]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[24]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[25]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[13]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[14]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[15]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[16]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[17]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[58]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[59]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[60]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[61]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[62]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[63]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[64]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[65]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[66]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[30]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[31]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[32]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[33]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[34]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[35]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[36]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[37]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[38]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[39]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[40]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[41]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[42]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[43]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[44]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[45]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[46]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[47]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[48]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[49]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[50]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[51]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[52]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[53]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[54]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[55]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[56]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[57]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[68]}"/>
+      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23" p14:TextBoxHelper.Watermark="Automatic Sweet Scent Routes" FontSize="10" SelectedValuePath="Content" SelectedValue="{Binding SelectedAutoSweetScentRoute}" Visibility="{Binding ShowAutoSweetScentRoutes, Converter={StaticResource BoolToVis}}" xmlns:p14="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+        <ComboBoxItem Content="Kanto_Route_4" />
+        <ComboBoxItem Content="Unova_Mistralton_City_1" />
+        <ComboBoxItem Content="Kanto_Celadon_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Cerulean_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Cinnabar_Island" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Fuchsia_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Indigo_Plateau" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Island_One" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Island_Six_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Island_Six_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Island_Two_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Island_Two_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Route_10" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Vermilion_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Virdian_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Battle_Frontier" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Ever_Grande_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Fallarbor_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Fallarbor_Town_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Pacifidlog_Town" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Petalburg_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Slateport_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Sootopolis_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Verdanturf_Town" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Canalave_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Celestic_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Celestic_Town_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Celestic_Town_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Eterna_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Fight_Area" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Floaroma_Town" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Pokemon_League" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Resort_Area" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Snowpoint_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Solaceon_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Solaceon_Town_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Sunyshore_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Sinnoh_Veilstone_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Black_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Black_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Driftveil_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Driftveil_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Driftveil_City_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Icirrus_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Icirrus_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Icirrus_City_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Icirrus_City_4" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Lacunosa_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Lacunosa_Town_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Lacunosa_Town_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Lacunosa_Town_4" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Lacunosa_Town_5" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Mistralton_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nacrene_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nacrene_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nimbasa_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nimbasa_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nimbasa_City_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Nimbasa_City_4" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Opelucid_City_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Opelucid_City_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Opelucid_City_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Opelucid_City_4" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Pokemon_League" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Striaton_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Undella_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Undella_Town_2" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
       </ComboBox>
-      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23"
-                Watermark="Automatic Walk/Fish Routes" FontSize="10"
-                Visibility="{Binding AutoWalkFishRoutesVisibility}" SelectedValue="{Binding AutoWalkFishText}"
-                SelectedIndex="{Binding AutoWalkFishRoutesSelectedIndex}">
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[0]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[27]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[9]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[26]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[67]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[28]}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding PremiumRoutes[29]}"/>
+      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23" p14:TextBoxHelper.Watermark="Automatic Walk/Fish Routes" FontSize="10" SelectedValuePath="Content" Visibility="{Binding ShowAutoWalkFishRoutes, Converter={StaticResource BoolToVis}}" SelectedValue="{Binding SelectedAutoWalkFishRoute}" xmlns:p14="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+        <ComboBoxItem Content="Kanto_Cerulean_City" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Kanto_Route_10" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Ever_Grande_City_2_Fish" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Fallarbor_Town_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Icirrus_City_Fish" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Undella_Town" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Unova_Undella_Town_Fish" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
       </ComboBox>
-      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23"
-                Watermark="Automatic Walk Routes" FontSize="10"
-                SelectedIndex="{Binding SafariAutoWalkRoutesSelectedIndex}"
-                Visibility="{Binding SafariAutoWalkRoutesVisibility}">
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding SafariWalkRoutes0}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding SafariWalkRoutes1}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding SafariWalkRoutes2}"/>
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding SafariWalkRoutes3}"/>
+      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23" p14:TextBoxHelper.Watermark="Automatic Walk Routes" FontSize="10" SelectedValuePath="Content" SelectedValue="{Binding SelectedSafariAutoWalkRoute}" Visibility="{Binding ShowSafariAutoWalkRoutes, Converter={StaticResource BoolToVis}}" xmlns:p14="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+        <ComboBoxItem Content="Kanto_Safari_Walk_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Safari_Walk_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Safari_Walk_2_Repel" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
+        <ComboBoxItem Content="Hoenn_Safari_Walk_3" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
       </ComboBox>
-      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23"
-                Watermark="Automatic Fish Routes" FontSize="10"
-                SelectedIndex="{Binding SafariAutoFishRoutesSelectedIndex}"
-                Visibility="{Binding SafariAutoFishRoutesVisibility}">
-        <ComboBoxItem Foreground="#7de6fa" Content="{Binding SafariFishRoutes0}"/>
+      <ComboBox Margin="10,5,10,0" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="23" p14:TextBoxHelper.Watermark="Automatic Fish Routes" FontSize="10" SelectedValuePath="Content" SelectedValue="{Binding SelectedSafariAutoFishRoute}" Visibility="{Binding ShowSafariAutoFishRoutes, Converter={StaticResource BoolToVis}}" xmlns:p14="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+        <ComboBoxItem Content="Kanto_Safari_Fish_1" Foreground="#7de6fa" IsEnabled="{Binding PremiumEnabled}" />
       </ComboBox>
-      <GridSplitter IsEnabled="false" Margin="10,5,10,0" Height="2" Grid.Row="5" Grid.ColumnSpan="5"/>
-      <CheckBox Checked="chk_shiny_Checked" x:Name="chk_shiny" Margin="10,10,0,0" Grid.Row="6" Grid.Column="0"
-                Grid.ColumnSpan="2" Content="Catch Shiny"
-                ToolTip="Automatically catches all Shinies in encounters.
-If the shiny is in a horde, the bot will use 'Anti AFK Shiny'."
-                IsChecked="{Binding CatchShiny}"/>
-      <CheckBox Checked="chk_shiny_stop_Checked" x:Name="chk_shinystop" Margin="10,10,0,0" Grid.Row="6"
-                Grid.Column="2" Grid.ColumnSpan="3" Content="Anti AFK Shiny"
-                ToolTip="Will stay afk without getting kicked so you can catch the Shiny yourself.
-Anti AFK items must be placed on Hotkey Slot 4.
-(Recommended items: Antidote, Awakening, Burn Heal)."
-                IsChecked="{Binding StopOnShiny}"/>
-      <GridSplitter IsEnabled="false" Margin="10,10,10,0" Height="2" Grid.Row="7" Grid.ColumnSpan="5"/>
-      <CheckBox x:Name="chk_skipdialog" Margin="10,10,0,0" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
-                Content="Skip Dialogue" ToolTip="Automatically skips any annoying dialogue for maximum efficiency."
-                IsChecked="{Binding SkipDialog}"/>
-      <CheckBox x:Name="chk_skipevolve" Margin="10,10,0,0" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
-                Content="Skip Evolve" ToolTip="Automatically cancels Pokemon evolution."
-                IsChecked="{Binding SkipEvolve}"/>
-      <CheckBox x:Name="chk_learn_move_skip" Margin="10,10,0,0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3"
-                Content="Skip Learn Move" ToolTip="Automatically cancels Pokemon learning a new move."
-                IsChecked="{Binding SkipLearningNew}"/>
-      <CheckBox x:Name="chk_login" Margin="10,10,0,0" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2"
-                Content="Auto Login"
-                ToolTip="Login automatically to avoid getting kicked out of the game.
-Can also join existing sessions or login after the afk message."
-                IsChecked="{Binding Login}"/>
+      <GridSplitter IsEnabled="False" Margin="10,5,10,0" Height="2" Grid.Row="5" Grid.ColumnSpan="5" />
+      <CheckBox Name="chk_shiny" Margin="10,10,0,0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Catch Shiny" ToolTip="Automatically catches all Shinies in encounters.&#xA;If the shiny is in a horde, the bot will use 'Anti AFK Shiny'." IsChecked="{Binding CatchShiny}" Checked="chk_shiny_Checked" />
+      <CheckBox Name="chk_shinystop" Margin="10,10,0,0" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Content="Anti AFK Shiny" ToolTip="Will stay afk without getting kicked so you can catch the Shiny yourself.&#xA;Anti AFK items are used directly from the Bag (Medicine tab).&#xA;(Recommended items: Antidote, Awakening, Burn Heal)." IsChecked="{Binding StopOnShiny}" Checked="chk_shiny_stop_Checked" />
+      <GridSplitter IsEnabled="False" Margin="10,10,10,0" Height="2" Grid.Row="7" Grid.ColumnSpan="5" />
+      <CheckBox Name="chk_skipdialog" Margin="10,10,0,0" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Skip Dialogue" ToolTip="Automatically skips any annoying dialogue for maximum efficiency." IsChecked="{Binding SkipDialog}" />
+      <CheckBox Name="chk_skipevolve" Margin="10,10,0,0" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="Skip Evolve" ToolTip="Automatically cancels Pokemon evolution." IsChecked="{Binding SkipEvolve}" />
+      <CheckBox Name="chk_learn_move_skip" Margin="10,10,0,0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Content="Skip Learn Move" ToolTip="Automatically cancels Pokemon learning a new move." IsChecked="{Binding SkipLearningNew}" />
+      <CheckBox Name="chk_login" Margin="10,10,0,0" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Content="Auto Login" ToolTip="Login automatically to avoid getting kicked out of the game.&#xA;Can also join existing sessions or login after the afk message." IsChecked="{Binding Login}" />
       <StackPanel Margin="10,10,0,0" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Orientation="Horizontal">
-        <CheckBox x:Name="chk_lure" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Content="Auto Lure"
-                  ToolTip="Use Lure automatically." IsChecked="{Binding Lure}"/>
-        <CheckBox x:Name="chk_ether" Margin="14,0,0,0" Content="Auto Ether"
-                  ToolTip="Use Ether automatically when you run out of PP.
-Ether will be used on the every Pokemon in your Party.
-Ether has to be placed on Hotkey Slot 7."
-                  IsChecked="{Binding AutoEther}"/>
+        <CheckBox Name="chk_lure" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Content="Auto Lure" ToolTip="Use Lure automatically." IsChecked="{Binding Lure}" />
+        <CheckBox Name="chk_ether" Margin="14,0,0,0" Content="Auto Ether" ToolTip="Use Ether automatically when you run out of PP.&#xA;Ether will be used on the every Pokemon in your Party.&#xA;Ether has to be placed on Hotkey Slot 7." IsChecked="{Binding AutoEther}" />
       </StackPanel>
       <StackPanel Margin="10,10,0,0" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Orientation="Horizontal">
-        <CheckBox Checked="chk_sweet_cent_Checked" x:Name="chk_sweet_cent" Content="Manual SS"
-                  ToolTip="Use Sweet Scent automatically until you run out of PP.
-Can be combined with Auto Leppa and used on any spot."
-                  IsChecked="{Binding SweetScent}"/>
-        <CheckBox Margin="10,0,0,0" Content="Auto Leppa"
-                  ToolTip="Use Leppa Berry automatically when you run out of Sweet Scent PP.
-Leppa Berry will be used on the second Pokemon in your Party.
-Sweet Scent Move has to be placed on Move Slot 1.
-Leppa Berry has to be placed on Hotkey Slot 7."
-                  IsChecked="{Binding AutoLeppa}" IsEnabled="{Binding SweetScent}"/>
+        <CheckBox Name="chk_sweet_cent" Content="Manual SS" ToolTip="Use Sweet Scent automatically until you run out of PP.&#xA;Can be combined with Auto Leppa and used on any spot." IsChecked="{Binding SweetScent}" Checked="chk_sweet_cent_Checked" />
+        <CheckBox Margin="10,0,0,0" Content="Auto Leppa" ToolTip="Use Leppa Berry automatically when you run out of Sweet Scent PP.&#xA;Leppa Berry will be used on the second Pokemon in your Party.&#xA;Sweet Scent Move has to be placed on Move Slot 1.&#xA;Leppa Berry has to be placed on Hotkey Slot 7." IsChecked="{Binding AutoLeppa}" IsEnabled="{Binding SweetScent}" />
       </StackPanel>
-      <Button IsEnabledChanged="btn_start_IsEnabledChanged" x:Name="btn_start" Margin="10,0,0,5"
-              VerticalAlignment="Bottom" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Content="START"
-              Height="31" IsEnabled="{Binding StartEnabled}" Command="{Binding StartCommand}"/>
-      <Button x:Name="btn_stop" Margin="10,0,0,5" VerticalAlignment="Bottom" Grid.Row="11" Grid.Column="2"
-              Grid.ColumnSpan="2" Content="STOP" Height="31" IsEnabled="{Binding StopEnabled}"
-              Command="{Binding StopCommand}"/>
+      <Button Name="btn_start" Margin="10,0,0,5" VerticalAlignment="Bottom" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Content="START" Height="31" IsEnabled="{Binding StartEnabled}" Command="{Binding StartCommand}" />
+      <Button Name="btn_stop" Margin="10,0,0,5" VerticalAlignment="Bottom" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" Content="STOP" Height="31" IsEnabled="{Binding StopEnabled}" Command="{Binding StopCommand}" />
     </Grid>
-    <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25" FrameworkElement.Margin="10"
-                      FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top"
-                      Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Kind="Home"
-                      UIElement.Visibility="Visible"/>
+    <PackIconMaterial FrameworkElement.Width="25" FrameworkElement.Height="25" FrameworkElement.Margin="10" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top" Control.Foreground="{DynamicResource MahApps.Brushes.AccentBase}" p13:PackIconMaterial.Kind="Home" UIElement.Visibility="Visible" xmlns:p13="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
   </Grid>
 </UserControl>

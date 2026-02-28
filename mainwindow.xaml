@@ -1,129 +1,120 @@
-<pokemmo_:MainWindow  xmlns:pokemmo_="clr-namespace:PokeMMO_"x:Class="PokeMMO_.MainWindow"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:views="clr-namespace:PokeMMO_.Views"
-            xmlns:model="clr-namespace:PokeMMO_.Model"
-            xmlns:vm="clr-namespace:PokeMMO_.ViewModels"
-            Closing="Window_Closing" x:Name="MyMainWindow" Window.Title="" FrameworkElement.Height="370"
-            FrameworkElement.Width="400" Window.Topmost="true" Window.WindowStartupLocation="CenterScreen"
-            Window.ResizeMode="NoResize">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pokemmo_:MainWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:views="clr-namespace:PokeMMO_.Views" xmlns:model="clr-namespace:PokeMMO_.Model" xmlns:vm="clr-namespace:PokeMMO_.ViewModels" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:MetroWindow.Name="MyMainWindow" Window.Title="" FrameworkElement.Height="370" FrameworkElement.Width="400" Window.Topmost="True" Window.WindowStartupLocation="CenterScreen" Window.ResizeMode="NoResize" xmlns:pokemmo_="clr-namespace:PokeMMO_">
   <FrameworkElement.DataContext>
-    <vm:MainViewModel/>
+    <vm:MainViewModel />
   </FrameworkElement.DataContext>
-  <mah:MetroWindow.LeftWindowCommands>
-    <mah:WindowCommands ShowSeparators="false">
-      <Button ToolTip="Version: 1.892">
-        <PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22" Kind="Pokeball"/>
+  <controls:MetroWindow.LeftWindowCommands>
+    <controls:WindowCommands WindowCommands.ShowSeparators="False">
+      <Button ToolTip="Version: 1.896">
+        <iconpacks:PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22" xmlns:iconpacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" iconpacks:PackIconMaterial.Kind="Pokeball" />
       </Button>
-    </mah:WindowCommands>
-  </mah:MetroWindow.LeftWindowCommands>
-  <MetroWindow.RightWindowCommands>
-    <mah:WindowCommands>
-      <Button Click="CreditsEvent" Content="CREDITS">
+    </controls:WindowCommands>
+  </controls:MetroWindow.LeftWindowCommands>
+  <controls:MetroWindow.RightWindowCommands>
+    <controls:WindowCommands>
+      <Button Content="CREDITS">
         <ContentControl.ContentTemplate>
           <DataTemplate>
             <StackPanel Orientation="Horizontal">
-              <PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22"
-                                FrameworkElement.VerticalAlignment="Center" Kind="Link"/>
-              <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{Binding}"/>
+              <PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22" FrameworkElement.VerticalAlignment="Center" p18:PackIconMaterial.Kind="Link" xmlns:p18="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+              <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{Binding}" />
             </StackPanel>
           </DataTemplate>
         </ContentControl.ContentTemplate>
+        <!--Unknown connection ID: 2-->
       </Button>
-      <Button Click="UnlockEvent" Content="UNLOCK">
+      <Button Content="UNLOCK">
         <ContentControl.ContentTemplate>
           <DataTemplate>
             <StackPanel Orientation="Horizontal">
-              <PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22"
-                                FrameworkElement.VerticalAlignment="Center" Kind="LockOpen"/>
-              <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{Binding}"/>
+              <PackIconMaterial FrameworkElement.Width="22" FrameworkElement.Height="22" FrameworkElement.VerticalAlignment="Center" p18:PackIconMaterial.Kind="LockOpen" xmlns:p18="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+              <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="{Binding}" />
             </StackPanel>
           </DataTemplate>
         </ContentControl.ContentTemplate>
+        <!--Unknown connection ID: 3-->
       </Button>
-    </mah:WindowCommands>
-  </MetroWindow.RightWindowCommands>
+    </controls:WindowCommands>
+  </controls:MetroWindow.RightWindowCommands>
   <FrameworkElement.Resources>
-    <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type HamburgerMenuIconItem}">
-      <Grid Height="48">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type HamburgerMenu}}, Path=CompactPaneLength, Mode=OneWay}"/>
-          <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ContentControl Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="false"
-                        Content="{Binding Icon}"/>
-        <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="16" Text="{Binding Label}"/>
-      </Grid>
-    </DataTemplate>
+    <ResourceDictionary>
+      <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type controls:HamburgerMenuIconItem}">
+        <Grid Height="48">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Path=CompactPaneLength, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type controls:HamburgerMenu}}}" />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <ContentControl Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False" Content="{Binding Icon}" />
+          <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="16" Text="{Binding Label}" />
+        </Grid>
+      </DataTemplate>
+    </ResourceDictionary>
   </FrameworkElement.Resources>
-  <mah:HamburgerMenu ItemInvoked="HamburgerMenu_ItemInvoked" x:Name="HamburgerMenu" DisplayMode="CompactOverlay"
-                 OpenPaneLength="125" ItemTemplate="{StaticResource MenuItemTemplate}"
-                 OptionsItemTemplate="{StaticResource MenuItemTemplate}"
-                 ContentControl.Content="{Binding RelativeSource={RelativeSource Mode=Self}, Path=SelectedItem}">
-    <HamburgerMenu.ItemsSource>
-      <HamburgerMenuItemCollection>
-        <HamburgerMenuIconItem Label="Home" Tag="{Binding Home}">
-          <HamburgerMenuIconItem.Icon>
-            <MaterialExtension Kind="Home"/>
-          </HamburgerMenuIconItem.Icon>
-        </HamburgerMenuIconItem>
-        <HamburgerMenuIconItem Label="Premium" Tag="{Binding Premium}">
-          <HamburgerMenuIconItem.Icon>
-            <MaterialExtension Kind="Star"/>
-          </HamburgerMenuIconItem.Icon>
-        </HamburgerMenuIconItem>
-        <HamburgerMenuIconItem Label="Security" Tag="{Binding Security}">
-          <HamburgerMenuIconItem.Icon>
-            <MaterialExtension Kind="Shield"/>
-          </HamburgerMenuIconItem.Icon>
-        </HamburgerMenuIconItem>
-        <HamburgerMenuIconItem Label="Auth" Tag="{Binding Auth}">
-          <HamburgerMenuIconItem.Icon>
-            <MaterialExtension Kind="Account"/>
-          </HamburgerMenuIconItem.Icon>
-        </HamburgerMenuIconItem>
-      </HamburgerMenuItemCollection>
-    </HamburgerMenu.ItemsSource>
-    <mah:HamburgerMenu.OptionsItemsSource>
-      <HamburgerMenuItemCollection>
-        <mah:HamburgerMenuIconItem Label="Settings" Tag="{Binding Settings}">
-          <HamburgerMenuIconItem.Icon>
-            <MaterialExtension Kind="Cog"/>
-          </HamburgerMenuIconItem.Icon>
-        </mah:HamburgerMenuIconItem>
-      </HamburgerMenuItemCollection>
-    </mah:HamburgerMenu.OptionsItemsSource>
+  <controls:HamburgerMenu controls:HamburgerMenu.Name="HamburgerMenu" controls:HamburgerMenu.DisplayMode="CompactOverlay" controls:HamburgerMenu.OpenPaneLength="125" controls:HamburgerMenu.ItemTemplate="{StaticResource MenuItemTemplate}" controls:HamburgerMenu.OptionsItemTemplate="{StaticResource MenuItemTemplate}" ContentControl.Content="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=Self}}">
+    <controls:HamburgerMenu.ItemsSource>
+      <controls:HamburgerMenuItemCollection>
+        <controls:HamburgerMenuIconItem controls:HamburgerMenuItem.Label="Home" controls:HamburgerMenuItemBase.Tag="{Binding Home}">
+          <controls:HamburgerMenuIconItem.Icon>
+            <iconpacks:MaterialExtension xmlns:iconpacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" iconpacks:MaterialExtension.Kind="Home" />
+          </controls:HamburgerMenuIconItem.Icon>
+        </controls:HamburgerMenuIconItem>
+        <controls:HamburgerMenuIconItem controls:HamburgerMenuItem.Label="Premium" controls:HamburgerMenuItemBase.Tag="{Binding Premium}">
+          <controls:HamburgerMenuIconItem.Icon>
+            <MaterialExtension p17:MaterialExtension.Kind="Star" xmlns:p17="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+          </controls:HamburgerMenuIconItem.Icon>
+        </controls:HamburgerMenuIconItem>
+        <controls:HamburgerMenuIconItem controls:HamburgerMenuItem.Label="Security" controls:HamburgerMenuItemBase.Tag="{Binding Security}">
+          <controls:HamburgerMenuIconItem.Icon>
+            <MaterialExtension p17:MaterialExtension.Kind="Shield" xmlns:p17="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+          </controls:HamburgerMenuIconItem.Icon>
+        </controls:HamburgerMenuIconItem>
+        <controls:HamburgerMenuIconItem controls:HamburgerMenuItem.Label="Auth" controls:HamburgerMenuItemBase.Tag="{Binding Auth}">
+          <controls:HamburgerMenuIconItem.Icon>
+            <MaterialExtension p17:MaterialExtension.Kind="Account" xmlns:p17="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+          </controls:HamburgerMenuIconItem.Icon>
+        </controls:HamburgerMenuIconItem>
+      </controls:HamburgerMenuItemCollection>
+    </controls:HamburgerMenu.ItemsSource>
+    <controls:HamburgerMenu.OptionsItemsSource>
+      <controls:HamburgerMenuItemCollection>
+        <controls:HamburgerMenuIconItem controls:HamburgerMenuItem.Label="Settings" controls:HamburgerMenuItemBase.Tag="{Binding Settings}">
+          <controls:HamburgerMenuIconItem.Icon>
+            <MaterialExtension p17:MaterialExtension.Kind="Cog" xmlns:p17="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" xmlns="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material" />
+          </controls:HamburgerMenuIconItem.Icon>
+        </controls:HamburgerMenuIconItem>
+      </controls:HamburgerMenuItemCollection>
+    </controls:HamburgerMenu.OptionsItemsSource>
     <ContentControl.ContentTemplate>
       <DataTemplate>
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
           </Grid.RowDefinitions>
-          <mah:TransitioningContentControl Grid.Row="1" Transition="Default" ContentControl.Content="{Binding Tag}">
+          <controls:TransitioningContentControl Grid.Row="1" controls:TransitioningContentControl.Transition="Default" ContentControl.Content="{Binding Tag}">
             <FrameworkElement.Resources>
-              <DataTemplate DataType="{x:Type model:Home}">
-                <views:HomePage/>
-              </DataTemplate>
-              <DataTemplate DataType="{x:Type model:Premium}">
-                <views:PremiumPage/>
-              </DataTemplate>
-              <DataTemplate DataType="{x:Type model:Security}">
-                <views:SecurityPage/>
-              </DataTemplate>
-              <DataTemplate DataType="{x:Type model:Auth}">
-                <views:AuthPage/>
-              </DataTemplate>
-              <DataTemplate DataType="{x:Type model:Settings}">
-                <views:SettingsPage/>
-              </DataTemplate>
+              <ResourceDictionary>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:Home}}" DataType="{x:Type model:Home}">
+                  <views:HomePage />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:Premium}}" DataType="{x:Type model:Premium}">
+                  <views:PremiumPage />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:Security}}" DataType="{x:Type model:Security}">
+                  <views:SecurityPage />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:Auth}}" DataType="{x:Type model:Auth}">
+                  <views:AuthPage />
+                </DataTemplate>
+                <DataTemplate x:Key="{DataTemplateKey {x:Type model:Settings}}" DataType="{x:Type model:Settings}">
+                  <views:SettingsPage />
+                </DataTemplate>
+              </ResourceDictionary>
             </FrameworkElement.Resources>
-          </mah:TransitioningContentControl>
+          </controls:TransitioningContentControl>
         </Grid>
       </DataTemplate>
     </ContentControl.ContentTemplate>
-  </mah:HamburgerMenu>
+    <!--Unknown connection ID: 4-->
+  </controls:HamburgerMenu>
+  <!--Unknown connection ID: 1-->
 </pokemmo_:MainWindow>

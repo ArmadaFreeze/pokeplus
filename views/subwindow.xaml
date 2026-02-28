@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="PokeMMO_.SubWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="clr-namespace:PokeMMO_.Model" xmlns:vm="clr-namespace:PokeMMO_.ViewModels" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Name="MySubWindow" Title="" Height="190" Width="230" Background="#00FFFFFF" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="Manual" Topmost="True" xmlns:pokemmo_="clr-namespace:PokeMMO_" MouseDown="Window_MouseDown">
+  <Grid>
+    <Border BorderThickness="1" CornerRadius="8" Background="#FF252525" />
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Name="lbl_shinycounter" Margin="8,8,0,0" Grid.Row="0" Grid.Column="0" Foreground="#FFFFD83B" Text="{Binding ShinyCounter}" />
+      <TextBlock Name="lbl_timer" Margin="8,8,0,0" Grid.Row="0" Grid.Column="1" Foreground="#FF7CFC00" Text="{Binding Timer}" />
+      <TextBlock Name="lbl_ballsthrowncounter" Margin="8,0,0,0" Grid.Row="1" Grid.Column="0" Foreground="#FFFFFFFF" Text="{Binding ThrownBallsCounter}" />
+      <TextBlock Margin="8,0,0,0" Grid.Row="1" Grid.Column="1" Foreground="#FFFFFFFF" Text="{Binding ItemCounter}" />
+      <TextBlock Name="lbl_encounterscount" Margin="8,0,0,0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#FFFFFFFF" Text="{Binding EncountersCounter}" />
+      <TextBlock Name="lbl_status" Margin="8,4,0,0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#FFFFFFFF" VerticalAlignment="Top" Text="{Binding Status}" />
+      <RichTextBox Name="txt_richtextbox" Margin="8,2,8,5" Height="70" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" IsReadOnly="True" Background="#00FFFFFF" VerticalAlignment="Top" TextChanged="txt_richtextbox_TextChanged">
+        <FlowDocument>
+          <Paragraph TextAlignment="Left" FontSize="12">
+            <Run Foreground="#FFFFFFFF" Text="{Binding StatusMessages}" />
+          </Paragraph>
+        </FlowDocument>
+      </RichTextBox>
+      <Button Name="btn_show" Grid.Row="5" Grid.Column="0" Width="100" Content="SHOW" />
+      <Button Name="btn_hide" Grid.Row="5" Grid.Column="1" Width="100" Content="HIDE" />
+    </Grid>
+  </Grid>
+</Window>
